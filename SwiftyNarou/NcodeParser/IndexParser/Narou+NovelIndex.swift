@@ -8,79 +8,81 @@
 import SwiftSoup
 
 extension Narou {
-    func fetchNovelIndex(ncode: String, callback: @escaping (Data?, Error?) -> Void) {
+    public func fetchNovelIndex(ncode: String, completionHandler: @escaping (Data?, Error?) -> Void) {
         let urlString = Constants.SYOSETU_NCODE_URL + ncode
-        fetchNovelIndex(urlString: urlString, callback: callback)
+        fetchNovelIndex(urlString: urlString, completionHandler: completionHandler)
     }
     
-    func fetchNovelIndex(urlString: String, callback: @escaping (Data?, Error?) -> Void) {
+    public func fetchNovelIndex(urlString: String, completionHandler: @escaping (Data?, Error?) -> Void) {
         guard let url = URL(string: urlString) else {
-            callback(nil, NcodeParserError.MalformedUrl(malformedUrl: urlString))
+            completionHandler(nil, NarouError.MalformedUrl(malformedUrl: urlString))
             return
         }
-        fetchNovelIndex(url: url, callback: callback)
+        fetchNovelIndex(url: url, completionHandler: completionHandler)
     }
     
-    func fetchNovelIndex(url: URL, callback: @escaping (Data?, Error?) -> Void) {
+    public func fetchNovelIndex(url: URL, completionHandler: @escaping (Data?, Error?) -> Void) {
         let ncode = url.pathComponents[1]
         if ncode.first != "n" {
-            callback(nil, NcodeParserError.IncorrectNcode(badNcode: ncode))
+            completionHandler(nil, NarouError.IncorrectNcode(badNcode: ncode))
             return
         }
         
+        fetchNovelIndexData(url: url) { contents, error in
+            if error != nil {
+                DispatchQueue.main.async {
+                    completionHandler(nil, error)
+                }
+                return
+            }
+            
+            let novelIndex = self.filterNovelIndexHtml(html: contents!)
+            if novelIndex != nil {
+                completionHandler(try! JSONEncoder().encode(novelIndex), nil)
+            } else {
+                completionHandler(nil, nil)
+            }
+        }
+    }
+    
+    func fetchNovelIndexData(url: URL, _ completionHandler: @escaping (String?, Error?) -> Void) {
         task?.cancel()
         
         task = session.dataTask(with: url) { data, response, error in
             if let error = error {
-                DispatchQueue.main.async {
-                    callback(
-                        nil,
-                        NcodeParserError.ClientError(message: error.localizedDescription)
-                    )
-                    return
-                }
+                completionHandler(
+                    nil,
+                    NarouError.ClientError(message: error.localizedDescription)
+                )
+                return
             }
             
             let httpResponse = response as! HTTPURLResponse
             if !(200...299).contains(httpResponse.statusCode) {
-                DispatchQueue.main.async {
-                    callback(
-                        nil,
-                        NcodeParserError.ServerError(errorCode: httpResponse.statusCode)
-                    )
-                    return
-                }
+                completionHandler(
+                    nil,
+                    NarouError.ServerError(errorCode: httpResponse.statusCode)
+                )
+                return
             }
             
             if let mimeType = httpResponse.mimeType,
                 mimeType != "text/html" {
-                DispatchQueue.main.async {
-                    callback(
-                        nil,
-                        NcodeParserError.MimetypeError(incorrectMimetype: mimeType)
-                    )
-                }
+                completionHandler(
+                    nil,
+                    NarouError.MimetypeError(incorrectMimetype: mimeType)
+                )
                 return
             }
             
-            guard let contentsData = data,
-                let contents = String(data: contentsData, encoding: .utf8) else {
-                DispatchQueue.main.async {
-                    callback(
-                        nil,
-                        NcodeParserError.ContentsError(badData: data?.debugDescription ?? "")
-                    )
-                }
-                return
-            }
-            
-            let novelIndex = self.filterNovelIndexHtml(html: contents)
-            DispatchQueue.main.async {
-                if novelIndex != nil {
-                    callback(try! JSONEncoder().encode(novelIndex), nil)
-                } else {
-                    callback(Data(), nil)
-                }
+            if let contentsData = data,
+                let contents = String(data: contentsData, encoding: .utf8) {
+                completionHandler(contents, nil)
+            } else {
+                completionHandler(
+                    nil,
+                    NarouError.ContentsError(badData: data?.debugDescription ?? "")
+                )
             }
         }
         
@@ -88,78 +90,112 @@ extension Narou {
     }
 
     func filterNovelIndexHtml(html: String) -> NovelIndex? {
-        let metadataSelection: Element
-        let indexSelection: Element
         do {
             let doc = try SwiftSoup.parse(html)
-            metadataSelection = try doc.select("#novel_color").first()!
-            indexSelection = try doc.select(".index_box").first()!
+            let containerSelection = try doc.select("#novel_color").first()!
             
-            guard let novelIndex = parseNovelIndexHeader(header: metadataSelection) else {
-                return nil
+            var seriesTitle = ""
+            var seriesNcode = ""
+            var novelTitle = ""
+            var author = ""
+            var synopsis = ""
+            var chapters = [Chapter]()
+
+            for element in containerSelection.children() {
+                switch try element.attr("class") {
+                case "series_title":
+                    let seriesInfo = parseSeriesInfo(selection: element)
+                    seriesTitle = seriesInfo.seriesTitle
+                    seriesNcode = seriesInfo.ncode
+                case "novel_title":
+                    novelTitle = parseNovelTitle(selection: element)
+                case "novel_writername":
+                    author = parseAuthor(selection: element)
+                case "index_box":
+                    chapters = parseChapters(selection: element)
+                default:
+                    if try element.attr("id") == "novel_ex" {
+                        synopsis = parseSynopsis(selection: element)
+                    }
+                }
             }
-            parseNovelIndexBody(body: indexSelection, novelIndex)
-            return novelIndex
-        } catch Exception.Error(_, let message) {
-            print(message)
+            
+            return NovelIndex(
+                seriesTitle: seriesTitle,
+                seriesNcode: seriesNcode,
+                novelTitle: novelTitle,
+                author: author,
+                synopsis: synopsis,
+                chapters: chapters
+            )
         } catch {
-            print("error")
+            return nil
         }
-        
-        return nil
     }
     
-    /**
-     Header includes the `seriesTitle`, `seriesNcode`, `novelTitle`, `writer`, and `synopsis` of a `NovelIndex`.
-     */
-    func parseNovelIndexHeader(header: Element) -> NovelIndex? {
-        var seriesTitle = ""
-        var seriesNcode = ""
-        var novelTitle = ""
-        var author = ""
-        var synopsis = ""
-        
-        do {
-            let seriesTitleSelection = try header.select(".series_title").first()?.select("a").first()
-            seriesTitle = try seriesTitleSelection?.text() ?? ""
-            seriesNcode = try seriesTitleSelection?.attr("href") ?? ""
-            novelTitle = try header.select(".novel_title").first()?.text() ?? ""
-            
-            if let authorLabel = try header.select(".novel_writername").first()?.text(),
-                let colonIndex = authorLabel.firstIndex(of: "：") {
-                let authorIndex = authorLabel.index(after: colonIndex)
-                author = String(authorLabel[authorIndex...])
-            }
-            
-            let synopsisSelection = try header.select("#novel_ex").first()
-            try synopsisSelection?.select("br").after("\\n")
-            let rawSynopsis = try synopsisSelection?.text()
-            if rawSynopsis != nil {
-                synopsis = rawSynopsis!
-                    .replacingOccurrences(of: " ", with: "")
-                    .replacingOccurrences(of: "\u{3000}", with: "")
-            }
-        } catch Exception.Error(_, let message) {
-            print(message)
-        } catch {
-            print("error")
+    func parseSeriesInfo(selection: Element) -> (seriesTitle: String, ncode: String) {
+        let seriesTitle = (try? selection.text()) ?? ""
+        let seriesNcode = (try? selection.attr("href")) ?? ""
+        return (seriesTitle, seriesNcode)
+    }
+    
+    func parseNovelTitle(selection: Element) -> String {
+        return (try? selection.text()) ?? ""
+    }
+    
+    func parseAuthor(selection: Element) -> String {
+        let authorLabel = (try? selection.text()) ?? ""
+        guard let colonIndex = authorLabel.firstIndex(of: "：") else {
+            return authorLabel
         }
+        let authorIndex = authorLabel.index(after: colonIndex)
+        return String(authorLabel[authorIndex...])
+    }
+    
+    func parseSynopsis(selection: Element) -> String {
+        do {
+            try selection.select("br").after("\\n")
+            let rawSynopsis = try selection.text()
+            return rawSynopsis
+                .replacingOccurrences(of: " ", with: "")
+                .replacingOccurrences(of: "\u{3000}", with: "")
+        } catch {
+            return ""
+        }
+    }
+    
+    func parseChapters(selection: Element) -> [Chapter] {
+        var chapters = [Chapter]()
+        var title = ""
+        var sections = [Section]()
+        for element in selection.children() {
+            if element.hasClass("chapter_title") {
+                chapters.append(Chapter(
+                    title: title, sections: sections
+                ))
+                title = (try? element.text()) ?? ""
+                sections = [Section]()
+            } else if element.hasClass("novel_sublist2") {
+                sections.append(parseSection(selection: element))
+            }
+        }
+        return chapters
+    }
+    
+    func parseSection(selection: Element) -> Section {
+        var title = ""
+        var ncode = ""
+        var uploadTime = ""
         
-        return NovelIndex(
-            seriesTitle: seriesTitle,
-            seriesNcode: seriesNcode,
-            novelTitle: novelTitle,
-            author: author,
-            synopsis: synopsis,
-            chapters: []
+        let sectionLink = selection.child(0).child(0)
+        title = (try? sectionLink.text()) ?? ""
+        ncode = (try? sectionLink.attr("href")) ?? ""
+        uploadTime = (try? selection.child(1).text()) ?? ""
+        
+        return Section(
+            title: title,
+            ncode: ncode,
+            uploadTime: uploadTime
         )
     }
-    
-    /**
-     Parses the `index_box` div into `Chapters` and `Sections`.
-     */
-    func parseNovelIndexBody(body: Element, _ novelIndex: NovelIndex) {
-        
-    }
-    
 }
