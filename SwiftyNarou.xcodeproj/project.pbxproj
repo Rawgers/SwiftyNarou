@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DCB50C004B8AB9CE53600D0 /* libPods-SwiftyNarou.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E9E4D70E36ECCFDF2825A7 /* libPods-SwiftyNarou.a */; };
+		A1059305EEB6068C14C55942 /* libPods-SwiftyNarouTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3C61593DDAD2B789558479 /* libPods-SwiftyNarouTests.a */; };
 		B83FF457252822C600D8B197 /* SwiftyNarou.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B83FF44D252822C600D8B197 /* SwiftyNarou.framework */; };
-		B83FF45C252822C600D8B197 /* SwiftyNarouTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FF45B252822C600D8B197 /* SwiftyNarouTests.swift */; };
+		B83FF45C252822C600D8B197 /* ParseNovelIndexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FF45B252822C600D8B197 /* ParseNovelIndexTest.swift */; };
 		B83FF45E252822C600D8B197 /* SwiftyNarou.h in Headers */ = {isa = PBXBuildFile; fileRef = B83FF450252822C600D8B197 /* SwiftyNarou.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B87714D6252AF966008EDC3D /* NovelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87714D5252AF966008EDC3D /* NovelIndex.swift */; };
 		B8955EE625299A6700F16B2A /* Narou.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8955EE525299A6700F16B2A /* Narou.swift */; };
@@ -16,7 +18,7 @@
 		B8C6F724252C0560003FF3D5 /* NarouError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C6F723252C0560003FF3D5 /* NarouError.swift */; };
 		B8DD437F2529C1EB0055B3D5 /* Narou+NovelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DD437E2529C1EB0055B3D5 /* Narou+NovelSection.swift */; };
 		B8DD43832529C1FA0055B3D5 /* Narou+NovelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DD43822529C1FA0055B3D5 /* Narou+NovelIndex.swift */; };
-		E8CE94FEABC9BD9EDB9F7361 /* Pods_SwiftyNarou.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5EBE34B6B6DBA9C13C5A366 /* Pods_SwiftyNarou.framework */; };
+		B8DD74CF252D2CD600A0747F /* ParseHtmlUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DD74CE252D2CD600A0747F /* ParseHtmlUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,13 +32,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09E9E4D70E36ECCFDF2825A7 /* libPods-SwiftyNarou.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwiftyNarou.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		573BE494635C7BB0DADF36EB /* Pods-SwiftyNarouTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyNarouTests.release.xcconfig"; path = "Target Support Files/Pods-SwiftyNarouTests/Pods-SwiftyNarouTests.release.xcconfig"; sourceTree = "<group>"; };
 		886ABC3075DFB79F1F311B33 /* Pods-SwiftyNarou.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyNarou.release.xcconfig"; path = "Target Support Files/Pods-SwiftyNarou/Pods-SwiftyNarou.release.xcconfig"; sourceTree = "<group>"; };
 		8E635506E9F0FADB2A25AC65 /* Pods-SwiftyNarou.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyNarou.debug.xcconfig"; path = "Target Support Files/Pods-SwiftyNarou/Pods-SwiftyNarou.debug.xcconfig"; sourceTree = "<group>"; };
 		B83FF44D252822C600D8B197 /* SwiftyNarou.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyNarou.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83FF450252822C600D8B197 /* SwiftyNarou.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyNarou.h; sourceTree = "<group>"; };
 		B83FF451252822C600D8B197 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B83FF456252822C600D8B197 /* SwiftyNarouTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyNarouTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B83FF45B252822C600D8B197 /* SwiftyNarouTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyNarouTests.swift; sourceTree = "<group>"; };
+		B83FF45B252822C600D8B197 /* ParseNovelIndexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseNovelIndexTest.swift; sourceTree = "<group>"; };
 		B83FF45D252822C600D8B197 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B87714D5252AF966008EDC3D /* NovelIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelIndex.swift; sourceTree = "<group>"; };
 		B8955EE525299A6700F16B2A /* Narou.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Narou.swift; sourceTree = "<group>"; };
@@ -44,7 +48,9 @@
 		B8C6F723252C0560003FF3D5 /* NarouError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarouError.swift; sourceTree = "<group>"; };
 		B8DD437E2529C1EB0055B3D5 /* Narou+NovelSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Narou+NovelSection.swift"; sourceTree = "<group>"; };
 		B8DD43822529C1FA0055B3D5 /* Narou+NovelIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Narou+NovelIndex.swift"; sourceTree = "<group>"; };
-		E5EBE34B6B6DBA9C13C5A366 /* Pods_SwiftyNarou.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyNarou.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8DD74CE252D2CD600A0747F /* ParseHtmlUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseHtmlUtils.swift; sourceTree = "<group>"; };
+		ECDDD2D4D3B3EA1810FB45B1 /* Pods-SwiftyNarouTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyNarouTests.debug.xcconfig"; path = "Target Support Files/Pods-SwiftyNarouTests/Pods-SwiftyNarouTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA3C61593DDAD2B789558479 /* libPods-SwiftyNarouTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwiftyNarouTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8CE94FEABC9BD9EDB9F7361 /* Pods_SwiftyNarou.framework in Frameworks */,
+				2DCB50C004B8AB9CE53600D0 /* libPods-SwiftyNarou.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B83FF457252822C600D8B197 /* SwiftyNarou.framework in Frameworks */,
+				A1059305EEB6068C14C55942 /* libPods-SwiftyNarouTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +77,8 @@
 		1421C53283864742032F4154 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E5EBE34B6B6DBA9C13C5A366 /* Pods_SwiftyNarou.framework */,
+				09E9E4D70E36ECCFDF2825A7 /* libPods-SwiftyNarou.a */,
+				FA3C61593DDAD2B789558479 /* libPods-SwiftyNarouTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -80,6 +88,8 @@
 			children = (
 				8E635506E9F0FADB2A25AC65 /* Pods-SwiftyNarou.debug.xcconfig */,
 				886ABC3075DFB79F1F311B33 /* Pods-SwiftyNarou.release.xcconfig */,
+				ECDDD2D4D3B3EA1810FB45B1 /* Pods-SwiftyNarouTests.debug.xcconfig */,
+				573BE494635C7BB0DADF36EB /* Pods-SwiftyNarouTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -127,8 +137,9 @@
 		B83FF45A252822C600D8B197 /* SwiftyNarouTests */ = {
 			isa = PBXGroup;
 			children = (
-				B83FF45B252822C600D8B197 /* SwiftyNarouTests.swift */,
+				B83FF45B252822C600D8B197 /* ParseNovelIndexTest.swift */,
 				B83FF45D252822C600D8B197 /* Info.plist */,
+				B8DD74CE252D2CD600A0747F /* ParseHtmlUtils.swift */,
 			);
 			path = SwiftyNarouTests;
 			sourceTree = "<group>";
@@ -197,6 +208,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B83FF464252822C600D8B197 /* Build configuration list for PBXNativeTarget "SwiftyNarouTests" */;
 			buildPhases = (
+				2E77D5758C0EBB059C461C56 /* [CP] Check Pods Manifest.lock */,
 				B83FF452252822C600D8B197 /* Sources */,
 				B83FF453252822C600D8B197 /* Frameworks */,
 				B83FF454252822C600D8B197 /* Resources */,
@@ -288,6 +300,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2E77D5758C0EBB059C461C56 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftyNarouTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -308,7 +342,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B83FF45C252822C600D8B197 /* SwiftyNarouTests.swift in Sources */,
+				B8DD74CF252D2CD600A0747F /* ParseHtmlUtils.swift in Sources */,
+				B83FF45C252822C600D8B197 /* ParseNovelIndexTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +533,7 @@
 		};
 		B83FF465252822C600D8B197 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECDDD2D4D3B3EA1810FB45B1 /* Pods-SwiftyNarouTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -516,6 +552,7 @@
 		};
 		B83FF466252822C600D8B197 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 573BE494635C7BB0DADF36EB /* Pods-SwiftyNarouTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

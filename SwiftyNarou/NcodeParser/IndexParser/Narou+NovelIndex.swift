@@ -135,7 +135,7 @@ extension Narou {
     
     func parseSeriesInfo(selection: Element) -> (seriesTitle: String, ncode: String) {
         let seriesTitle = (try? selection.text()) ?? ""
-        let seriesNcode = (try? selection.attr("href")) ?? ""
+        let seriesNcode = (try? selection.child(0).attr("href"))?.trimmingCharacters(in: ["/"]) ?? ""
         return (seriesTitle, seriesNcode)
     }
     
@@ -153,10 +153,12 @@ extension Narou {
     }
     
     func parseSynopsis(selection: Element) -> String {
+        // TODO: handle 続きを読む
         do {
             try selection.select("br").after("\\n")
             let rawSynopsis = try selection.text()
             return rawSynopsis
+                .replacingOccurrences(of: "\\n", with: "\n")
                 .replacingOccurrences(of: " ", with: "")
                 .replacingOccurrences(of: "\u{3000}", with: "")
         } catch {
@@ -189,7 +191,7 @@ extension Narou {
         
         let sectionLink = selection.child(0).child(0)
         title = (try? sectionLink.text()) ?? ""
-        ncode = (try? sectionLink.attr("href")) ?? ""
+        ncode = (try? sectionLink.attr("href"))?.trimmingCharacters(in: ["/"]) ?? ""
         uploadTime = (try? selection.child(1).text()) ?? ""
         
         return Section(
