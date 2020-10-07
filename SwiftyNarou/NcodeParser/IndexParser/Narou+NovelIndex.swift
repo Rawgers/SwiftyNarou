@@ -153,7 +153,6 @@ extension Narou {
     }
     
     func parseSynopsis(selection: Element) -> String {
-        // TODO: handle 続きを読む
         do {
             try selection.select("br").after("\\n")
             let rawSynopsis = try selection.text()
@@ -172,15 +171,22 @@ extension Narou {
         var sections = [Section]()
         for element in selection.children() {
             if element.hasClass("chapter_title") {
-                chapters.append(Chapter(
-                    title: title, sections: sections
-                ))
+                if !(title == "" && sections == []) {
+                    chapters.append(Chapter(
+                        title: title,
+                        sections: sections
+                    ))
+                }
                 title = (try? element.text()) ?? ""
                 sections = [Section]()
             } else if element.hasClass("novel_sublist2") {
                 sections.append(parseSection(selection: element))
             }
         }
+        chapters.append(Chapter(
+            title: title,
+            sections: sections
+        ))
         return chapters
     }
     
@@ -188,16 +194,24 @@ extension Narou {
         var title = ""
         var ncode = ""
         var uploadTime = ""
+        var lastUpdate: String? = nil
         
         let sectionLink = selection.child(0).child(0)
         title = (try? sectionLink.text()) ?? ""
-        ncode = (try? sectionLink.attr("href"))?.trimmingCharacters(in: ["/"]) ?? ""
-        uploadTime = (try? selection.child(1).text()) ?? ""
+        ncode = (try? sectionLink.attr("href"))?
+            .trimmingCharacters(in: ["/"]) ?? ""
+        
+        let publishTime = selection.child(1)
+        uploadTime = (try? publishTime.text())?
+            .replacingOccurrences(of: " （ 改 ）", with: "") ?? ""
+        lastUpdate = (try? publishTime.select("span").first()?.attr("title"))?
+            .replacingOccurrences(of: " 改稿", with: "")
         
         return Section(
             title: title,
             ncode: ncode,
-            uploadTime: uploadTime
+            uploadTime: uploadTime,
+            lastUpdate: lastUpdate
         )
     }
 }

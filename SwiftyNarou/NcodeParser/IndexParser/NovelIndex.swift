@@ -44,10 +44,12 @@ struct Section: Codable, Equatable {
     let title: String
     let ncode: String
     let uploadTime: String
+    let lastUpdate: String?
     
     static func == (lhs: Section, rhs: Section) -> Bool {
         return lhs.title == rhs.title
             && lhs.ncode == rhs.ncode
             && lhs.uploadTime == rhs.uploadTime
+            && lhs.lastUpdate == rhs.lastUpdate
     }
 }
