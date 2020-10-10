@@ -6,7 +6,6 @@
 //
 
 import SwiftSoup
-import XCTest
 
 func selectFragment(_ html: String) -> Element {
     let doc = try! SwiftSoup.parseBodyFragment(html)

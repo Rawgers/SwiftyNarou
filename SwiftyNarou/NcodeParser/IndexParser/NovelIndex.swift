@@ -5,19 +5,19 @@
 //  Created by Roger Luo on 10/4/20.
 //
 
-struct NovelIndex: Codable, Equatable {
-    let seriesTitle: String
-    let seriesNcode: String
-    let novelTitle: String
-    let author: String
-    let synopsis: String
-    var chapters: [Chapter]
+public struct NovelIndex: Equatable {
+    public let seriesTitle: String
+    public let seriesNcode: String
+    public let novelTitle: String
+    public let author: String
+    public let synopsis: String
+    public var chapters: [Chapter]
     
     mutating func addChapter(_ chapter: Chapter) {
         chapters.append(chapter)
     }
     
-    static func == (lhs: NovelIndex, rhs: NovelIndex) -> Bool {
+    public static func == (lhs: NovelIndex, rhs: NovelIndex) -> Bool {
         return lhs.seriesTitle == rhs.seriesTitle
             && lhs.seriesNcode == rhs.seriesNcode
             && lhs.novelTitle == rhs.novelTitle
@@ -27,26 +27,26 @@ struct NovelIndex: Codable, Equatable {
     }
 }
 
-struct Chapter: Codable, Equatable {
-    let title: String
-    var sections: [Section]
+public struct Chapter: Equatable {
+    public let title: String
+    public var sections: [Section]
     
     mutating func addSection(_ section: Section) {
         sections.append(section)
     }
     
-    static func == (lhs: Chapter, rhs: Chapter) -> Bool {
+    public static func == (lhs: Chapter, rhs: Chapter) -> Bool {
         return lhs.title == rhs.title && lhs.sections == rhs.sections
     }
 }
 
-struct Section: Codable, Equatable {
-    let title: String
-    let ncode: String
-    let uploadTime: String
-    let lastUpdate: String?
+public struct Section: Equatable {
+    public let title: String
+    public let ncode: String
+    public let uploadTime: String
+    public let lastUpdate: String?
     
-    static func == (lhs: Section, rhs: Section) -> Bool {
+    public static func == (lhs: Section, rhs: Section) -> Bool {
         return lhs.title == rhs.title
             && lhs.ncode == rhs.ncode
             && lhs.uploadTime == rhs.uploadTime

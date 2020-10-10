@@ -8,12 +8,12 @@
 import SwiftSoup
 
 extension Narou {
-    public func fetchNovelIndex(ncode: String, completionHandler: @escaping (Data?, Error?) -> Void) {
+    public func fetchNovelIndex(ncode: String, completionHandler: @escaping (NovelIndex?, Error?) -> Void) {
         let urlString = Constants.SYOSETU_NCODE_URL + ncode
         fetchNovelIndex(urlString: urlString, completionHandler: completionHandler)
     }
     
-    public func fetchNovelIndex(urlString: String, completionHandler: @escaping (Data?, Error?) -> Void) {
+    public func fetchNovelIndex(urlString: String, completionHandler: @escaping (NovelIndex?, Error?) -> Void) {
         guard let url = URL(string: urlString) else {
             completionHandler(nil, NarouError.MalformedUrl(malformedUrl: urlString))
             return
@@ -21,14 +21,14 @@ extension Narou {
         fetchNovelIndex(url: url, completionHandler: completionHandler)
     }
     
-    public func fetchNovelIndex(url: URL, completionHandler: @escaping (Data?, Error?) -> Void) {
+    public func fetchNovelIndex(url: URL, completionHandler: @escaping (NovelIndex?, Error?) -> Void) {
         let ncode = url.pathComponents[1]
         if ncode.first != "n" {
             completionHandler(nil, NarouError.IncorrectNcode(badNcode: ncode))
             return
         }
         
-        fetchNovelIndexData(url: url) { contents, error in
+        fetchNcodeHtml(url: url) { content, error in
             if error != nil {
                 DispatchQueue.main.async {
                     completionHandler(nil, error)
@@ -36,57 +36,11 @@ extension Narou {
                 return
             }
             
-            let novelIndex = self.filterNovelIndexHtml(html: contents!)
-            if novelIndex != nil {
-                completionHandler(try! JSONEncoder().encode(novelIndex), nil)
-            } else {
-                completionHandler(nil, nil)
+            let novelIndex = self.filterNovelIndexHtml(html: content!)
+            DispatchQueue.main.async {
+                completionHandler(novelIndex, nil)
             }
         }
-    }
-    
-    func fetchNovelIndexData(url: URL, _ completionHandler: @escaping (String?, Error?) -> Void) {
-        task?.cancel()
-        
-        task = session.dataTask(with: url) { data, response, error in
-            if let error = error {
-                completionHandler(
-                    nil,
-                    NarouError.ClientError(message: error.localizedDescription)
-                )
-                return
-            }
-            
-            let httpResponse = response as! HTTPURLResponse
-            if !(200...299).contains(httpResponse.statusCode) {
-                completionHandler(
-                    nil,
-                    NarouError.ServerError(errorCode: httpResponse.statusCode)
-                )
-                return
-            }
-            
-            if let mimeType = httpResponse.mimeType,
-                mimeType != "text/html" {
-                completionHandler(
-                    nil,
-                    NarouError.MimetypeError(incorrectMimetype: mimeType)
-                )
-                return
-            }
-            
-            if let contentsData = data,
-                let contents = String(data: contentsData, encoding: .utf8) {
-                completionHandler(contents, nil)
-            } else {
-                completionHandler(
-                    nil,
-                    NarouError.ContentsError(badData: data?.debugDescription ?? "")
-                )
-            }
-        }
-        
-        task?.resume()
     }
 
     func filterNovelIndexHtml(html: String) -> NovelIndex? {

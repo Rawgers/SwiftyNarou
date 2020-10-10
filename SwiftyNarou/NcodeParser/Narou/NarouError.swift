@@ -7,7 +7,7 @@
 
 enum NarouError: Error {
     case ClientError(message: String)
-    case ContentsError(badData: String)
+    case ContentError(badData: String)
     case IncorrectNcode(badNcode: String)
     case MalformedUrl(malformedUrl: String)
     case MimetypeError(incorrectMimetype: String)

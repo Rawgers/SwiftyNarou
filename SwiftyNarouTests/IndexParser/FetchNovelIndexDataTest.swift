@@ -11,14 +11,14 @@ import XCTest
 class FetchNovelIndexDataTest: XCTestCase {
     var narou: Narou!
     
-    override func setUpWithError() throws {
+    override func setUp() {
         narou = Narou()
     }
 
     func testfetchNovelIndexData() {
         let expectation = self.expectation(description: "Fetching novel index.")
         let url = URL(string: "https://ncode.syosetu.com/n4251cr/")!
-        narou.fetchNovelIndexData(url: url) { data, error in
+        narou.fetchNcodeHtml(url: url) { data, error in
             XCTAssertNil(error)
             XCTAssertNotNil(data)
             XCTAssertTrue(data != "")
@@ -26,18 +26,4 @@ class FetchNovelIndexDataTest: XCTestCase {
         }
         waitForExpectations(timeout: 10, handler: nil)
     }
-    
-    func testfetchNovelIndexData2() {
-        let expectation = self.expectation(description: "Fetching novel index.")
-        let url = URL(string: "https://ncode.syosetu.com/n7812gj/")!
-        narou.fetchNovelIndexData(url: url) { data, error in
-            print(data!)
-            XCTAssertNil(error)
-            XCTAssertNotNil(data)
-            XCTAssertTrue(data != "")
-            expectation.fulfill()
-        }
-        waitForExpectations(timeout: 10, handler: nil)
-    }
-
 }

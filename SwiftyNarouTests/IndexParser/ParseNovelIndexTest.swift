@@ -13,7 +13,6 @@ class SwiftyNarouTests: XCTestCase {
     var narou: Narou!
     
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
         narou = Narou()
     }
 
@@ -42,7 +41,7 @@ class SwiftyNarouTests: XCTestCase {
         XCTAssertEqual(title, expected)
     }
     
-    func testParseSynopsisBasic() {
+    func testParseSynopsis() {
         let html = """
         <div id="novel_ex">
             　『無職転生-異世界行ったら本気出す-』の番外編。
