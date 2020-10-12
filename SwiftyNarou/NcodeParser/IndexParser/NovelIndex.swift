@@ -9,7 +9,7 @@ public struct NovelIndex: Equatable {
     public let seriesTitle: String
     public let seriesNcode: String
     public let novelTitle: String
-    public let author: String
+    public let writer: String
     public let synopsis: String
     public var chapters: [Chapter]
     
@@ -21,7 +21,7 @@ public struct NovelIndex: Equatable {
         return lhs.seriesTitle == rhs.seriesTitle
             && lhs.seriesNcode == rhs.seriesNcode
             && lhs.novelTitle == rhs.novelTitle
-            && lhs.author == rhs.author
+            && lhs.writer == rhs.writer
             && lhs.synopsis == rhs.synopsis
             && lhs.chapters == rhs.chapters
     }

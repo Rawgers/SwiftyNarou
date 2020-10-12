@@ -9,7 +9,7 @@ public struct SectionContent {
     public let sectionTitle: String
     public let chapterTitle: String?
     public let novelTitle: String
-    public let author: String
+    public let writer: String
     public let content: String
     public let format: [NSRange: String]
     public let prevNcode: String?

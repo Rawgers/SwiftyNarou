@@ -51,7 +51,7 @@ extension Narou {
             var seriesTitle = ""
             var seriesNcode = ""
             var novelTitle = ""
-            var author = ""
+            var writer = ""
             var synopsis = ""
             var chapters = [Chapter]()
 
@@ -64,7 +64,7 @@ extension Narou {
                 case "novel_title":
                     novelTitle = parseNovelTitle(selection: element)
                 case "novel_writername":
-                    author = parseAuthor(selection: element)
+                    writer = parseWriter(selection: element)
                 case "index_box":
                     chapters = parseChapters(selection: element)
                 default:
@@ -78,7 +78,7 @@ extension Narou {
                 seriesTitle: seriesTitle,
                 seriesNcode: seriesNcode,
                 novelTitle: novelTitle,
-                author: author,
+                writer: writer,
                 synopsis: synopsis,
                 chapters: chapters
             )
@@ -97,13 +97,13 @@ extension Narou {
         return (try? selection.text()) ?? ""
     }
     
-    func parseAuthor(selection: Element) -> String {
-        let authorLabel = (try? selection.text()) ?? ""
-        guard let colonIndex = authorLabel.firstIndex(of: "：") else {
-            return authorLabel
+    func parseWriter(selection: Element) -> String {
+        let writerLabel = (try? selection.text()) ?? ""
+        guard let colonIndex = writerLabel.firstIndex(of: "：") else {
+            return writerLabel
         }
-        let authorIndex = authorLabel.index(after: colonIndex)
-        return String(authorLabel[authorIndex...])
+        let writerIndex = writerLabel.index(after: colonIndex)
+        return String(writerLabel[writerIndex...])
     }
     
     func parseSynopsis(selection: Element) -> String {

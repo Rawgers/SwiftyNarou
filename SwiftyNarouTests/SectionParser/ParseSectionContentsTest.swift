@@ -28,13 +28,13 @@ class ParseSectionContentsTest: XCTestCase {
         """
         
         let expectedNovelTitle = "無職転生　- 異世界行ったら本気だす -"
-        let expectedAuthor = "理不尽な孫の手"
+        let expectedWriter = "理不尽な孫の手"
         let expectedChapterTitle = "第１章　幼年期"
         
         let fragment = selectFragment(html)
-        let (novelTitle, author, chapterTitle) = narou.parseMetadataSelection(selection: fragment)
+        let (novelTitle, writer, chapterTitle) = narou.parseMetadataSelection(selection: fragment)
         XCTAssertEqual(novelTitle, expectedNovelTitle)
-        XCTAssertEqual(author, expectedAuthor)
+        XCTAssertEqual(writer, expectedWriter)
         XCTAssertEqual(chapterTitle, expectedChapterTitle)
     }
     
@@ -50,12 +50,12 @@ class ParseSectionContentsTest: XCTestCase {
         """
         
         let expectedNovelTitle = "ＳＳランクパーティでパシリをさせられていた男。ボス戦で仲間に見捨てられたので、ヤケクソで敏捷を９９９９まで極振りしたら『光』になった……"
-        let expectedAuthor = "ＬＡ軍"
+        let expectedWriter = "ＬＡ軍"
         
         let fragment = selectFragment(html)
-        let (novelTitle, author, chapterTitle) = narou.parseMetadataSelection(selection: fragment)
+        let (novelTitle, writer, chapterTitle) = narou.parseMetadataSelection(selection: fragment)
         XCTAssertEqual(novelTitle, expectedNovelTitle)
-        XCTAssertEqual(author, expectedAuthor)
+        XCTAssertEqual(writer, expectedWriter)
         XCTAssertNil(chapterTitle)
     }
     
@@ -310,7 +310,7 @@ class ParseSectionContentsTest: XCTestCase {
         let expectedNovelTitle = """
         ＳＳランクパーティでパシリをさせられていた男。ボス戦で仲間に見捨てられたので、ヤケクソで敏捷を９９９９まで極振りしたら『光』になった……
         """
-        let expectedAuthor = "ＬＡ軍"
+        let expectedWriter = "ＬＡ軍"
         let expectedContent = """
         名　前：グエン・タック
         職　業：斥候
@@ -341,7 +341,7 @@ class ParseSectionContentsTest: XCTestCase {
         XCTAssertEqual(expectedSectionTitle, res.sectionTitle)
         XCTAssertEqual(expectedChapterTitle, res.chapterTitle)
         XCTAssertEqual(expectedNovelTitle, res.novelTitle)
-        XCTAssertEqual(expectedAuthor, res.author)
+        XCTAssertEqual(expectedWriter, res.writer)
         XCTAssertEqual(expectedContent, res.content)
         XCTAssertEqual(expectedPrevNcode, res.prevNcode)
         XCTAssertEqual(expectedNextNcode, res.nextNcode)

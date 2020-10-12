@@ -52,14 +52,14 @@ extension Narou {
             var sectionTitle = ""
             var chapterTitle: String?
             var novelTitle = ""
-            var author = ""
+            var writer = ""
             var content = ""
             var format = [NSRange: String]()
             var prevNcode: String?
             var nextNcode: String?
             var progress = ""
             
-            (novelTitle, author, chapterTitle) = parseMetadataSelection(selection: metadataSelection)
+            (novelTitle, writer, chapterTitle) = parseMetadataSelection(selection: metadataSelection)
             for child in novelColorSelection.children() {
                 var label = (try? child.attr("class")) ?? ""
                 if (label == "") {
@@ -87,7 +87,7 @@ extension Narou {
                 sectionTitle: sectionTitle,
                 chapterTitle: chapterTitle,
                 novelTitle: novelTitle,
-                author: author,
+                writer: writer,
                 content: content,
                 format: format,
                 prevNcode: prevNcode,
@@ -101,11 +101,11 @@ extension Narou {
     
     func parseMetadataSelection(selection: Element) -> (
         novelTitle: String,
-        author: String,
+        writer: String,
         chapterTitle: String?
     ) {
         var novelTitle = ""
-        var author = ""
+        var writer = ""
         var chapterTitle: String?
         
         for (i, child) in selection.children().enumerated() {
@@ -113,7 +113,7 @@ extension Narou {
             case 0:
                 novelTitle = (try? child.text()) ?? ""
             case 1:
-                author = (try? child.text()) ?? ""
+                writer = (try? child.text()) ?? ""
             case 2:
                 chapterTitle = (try? child.text()) ?? ""
             default:
@@ -121,7 +121,7 @@ extension Narou {
             }
         }
         
-        return (novelTitle, author, chapterTitle)
+        return (novelTitle, writer, chapterTitle)
     }
     
     func parsePrevAndNextButtons(selection: Element) -> (
