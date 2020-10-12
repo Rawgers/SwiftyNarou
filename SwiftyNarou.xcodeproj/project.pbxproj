@@ -105,7 +105,6 @@
 		B81401D7252AF6B30011D21E /* NcodeParser */ = {
 			isa = PBXGroup;
 			children = (
-				B8C6F722252C0545003FF3D5 /* Narou */,
 				B87714D2252AF7AE008EDC3D /* SectionParser */,
 				B87714D1252AF7A6008EDC3D /* IndexParser */,
 			);
@@ -135,6 +134,7 @@
 		B83FF44F252822C600D8B197 /* SwiftyNarou */ = {
 			isa = PBXGroup;
 			children = (
+				B8C6F722252C0545003FF3D5 /* Narou */,
 				B81401D7252AF6B30011D21E /* NcodeParser */,
 				B83FF450252822C600D8B197 /* SwiftyNarou.h */,
 				B83FF451252822C600D8B197 /* Info.plist */,
