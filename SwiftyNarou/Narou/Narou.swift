@@ -15,8 +15,9 @@ public class Narou {
         SwiftSoup.OutputSettings().prettyPrint(pretty: false)
     }
     
-    func fetchNcodeHtml(
+    func fetchNarou(
         url: URL,
+        mimeType expectedMimetype: String,
         _ completionHandler: @escaping (String?, Error?) -> Void
     ) {
         task?.cancel()
@@ -40,7 +41,7 @@ public class Narou {
             }
             
             if let mimeType = httpResponse.mimeType,
-                mimeType != "text/html" {
+                mimeType != expectedMimetype {
                 completionHandler(
                     nil,
                     NarouError.MimetypeError(incorrectMimetype: mimeType)

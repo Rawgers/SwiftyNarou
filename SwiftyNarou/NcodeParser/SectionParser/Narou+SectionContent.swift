@@ -28,7 +28,7 @@ extension Narou {
             return
         }
         
-        fetchNcodeHtml(url: url) { content, error in
+        fetchNarou(url: url, mimeType: "text/html") { content, error in
             if error != nil {
                 DispatchQueue.main.async {
                     completionHandler(nil, error)

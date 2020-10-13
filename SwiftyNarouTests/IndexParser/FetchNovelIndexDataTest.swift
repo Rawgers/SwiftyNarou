@@ -18,7 +18,7 @@ class FetchNovelIndexDataTest: XCTestCase {
     func testfetchNovelIndexData() {
         let expectation = self.expectation(description: "Fetching novel index.")
         let url = URL(string: "https://ncode.syosetu.com/n4251cr/")!
-        narou.fetchNcodeHtml(url: url) { data, error in
+        narou.fetchNarou(url: url, mimeType: "text/html") { data, error in
             XCTAssertNil(error)
             XCTAssertNotNil(data)
             XCTAssertTrue(data != "")
