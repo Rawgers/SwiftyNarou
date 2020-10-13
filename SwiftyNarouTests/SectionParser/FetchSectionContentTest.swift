@@ -44,6 +44,7 @@ class FetchSectionContentTest: XCTestCase {
         narou.fetchSectionContent(ncode: ncode) { content, error in
             XCTAssertNil(error)
             XCTAssertNotNil(content)
+            print(content!.content)
             expectation.fulfill()
         }
         waitForExpectations(timeout: 10, handler: nil)

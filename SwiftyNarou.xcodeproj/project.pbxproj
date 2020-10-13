@@ -13,7 +13,11 @@
 		B83FF45C252822C600D8B197 /* ParseNovelIndexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FF45B252822C600D8B197 /* ParseNovelIndexTest.swift */; };
 		B83FF45E252822C600D8B197 /* SwiftyNarou.h in Headers */ = {isa = PBXBuildFile; fileRef = B83FF450252822C600D8B197 /* SwiftyNarou.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8577911252D93280095165A /* FetchNovelIndexDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8577910252D93280095165A /* FetchNovelIndexDataTest.swift */; };
+		B874417325340EAF0001B098 /* NarouRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874417225340EAF0001B098 /* NarouRequest.swift */; };
+		B874417925340ECC0001B098 /* NarouResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874417825340ECC0001B098 /* NarouResponse.swift */; };
 		B87714D6252AF966008EDC3D /* NovelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87714D5252AF966008EDC3D /* NovelIndex.swift */; };
+		B87EEB902535B29700BADC10 /* TypeEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87EEB8F2535B29700BADC10 /* TypeEnums.swift */; };
+		B87EEB942535B48A00BADC10 /* NarouResponseFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87EEB932535B48A00BADC10 /* NarouResponseFormat.swift */; };
 		B8840B422532B9280013BEE5 /* Narou+NovelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8840B412532B9280013BEE5 /* Narou+NovelIndex.swift */; };
 		B8955EE625299A6700F16B2A /* Narou.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8955EE525299A6700F16B2A /* Narou.swift */; };
 		B8955EF02529B03200F16B2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8955EEF2529B03200F16B2A /* Constants.swift */; };
@@ -47,7 +51,11 @@
 		B83FF45B252822C600D8B197 /* ParseNovelIndexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseNovelIndexTest.swift; sourceTree = "<group>"; };
 		B83FF45D252822C600D8B197 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8577910252D93280095165A /* FetchNovelIndexDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchNovelIndexDataTest.swift; sourceTree = "<group>"; };
+		B874417225340EAF0001B098 /* NarouRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarouRequest.swift; sourceTree = "<group>"; };
+		B874417825340ECC0001B098 /* NarouResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarouResponse.swift; sourceTree = "<group>"; };
 		B87714D5252AF966008EDC3D /* NovelIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelIndex.swift; sourceTree = "<group>"; };
+		B87EEB8F2535B29700BADC10 /* TypeEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeEnums.swift; sourceTree = "<group>"; };
+		B87EEB932535B48A00BADC10 /* NarouResponseFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarouResponseFormat.swift; sourceTree = "<group>"; };
 		B8840B412532B9280013BEE5 /* Narou+NovelIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Narou+NovelIndex.swift"; sourceTree = "<group>"; };
 		B8955EE525299A6700F16B2A /* Narou.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Narou.swift; sourceTree = "<group>"; };
 		B8955EEF2529B03200F16B2A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -134,6 +142,7 @@
 		B83FF44F252822C600D8B197 /* SwiftyNarou */ = {
 			isa = PBXGroup;
 			children = (
+				B87441712533EBBF0001B098 /* ApiWrapper */,
 				B8C6F722252C0545003FF3D5 /* Narou */,
 				B81401D7252AF6B30011D21E /* NcodeParser */,
 				B83FF450252822C600D8B197 /* SwiftyNarou.h */,
@@ -151,6 +160,17 @@
 				B83FF45D252822C600D8B197 /* Info.plist */,
 			);
 			path = SwiftyNarouTests;
+			sourceTree = "<group>";
+		};
+		B87441712533EBBF0001B098 /* ApiWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				B874417225340EAF0001B098 /* NarouRequest.swift */,
+				B874417825340ECC0001B098 /* NarouResponse.swift */,
+				B87EEB8F2535B29700BADC10 /* TypeEnums.swift */,
+				B87EEB932535B48A00BADC10 /* NarouResponseFormat.swift */,
+			);
+			path = ApiWrapper;
 			sourceTree = "<group>";
 		};
 		B87714D1252AF7A6008EDC3D /* IndexParser */ = {
@@ -359,6 +379,10 @@
 			files = (
 				B8955EE625299A6700F16B2A /* Narou.swift in Sources */,
 				B8840B422532B9280013BEE5 /* Narou+NovelIndex.swift in Sources */,
+				B87EEB902535B29700BADC10 /* TypeEnums.swift in Sources */,
+				B874417925340ECC0001B098 /* NarouResponse.swift in Sources */,
+				B87EEB942535B48A00BADC10 /* NarouResponseFormat.swift in Sources */,
+				B874417325340EAF0001B098 /* NarouRequest.swift in Sources */,
 				B8955EF02529B03200F16B2A /* Constants.swift in Sources */,
 				B8DD437F2529C1EB0055B3D5 /* Narou+SectionContent.swift in Sources */,
 				B8BD1710252F9B8C003E79B9 /* SectionContent.swift in Sources */,
