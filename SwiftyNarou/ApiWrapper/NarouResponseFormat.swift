@@ -77,20 +77,20 @@ public enum ResponseOrder: String {
 
 public struct NarouResponseFormat {
     // gzip compression [1, 5] with 5 being the highest compression
-    let gzipCompressionLevel: Int?
+    public let gzipCompressionLevel: Int?
     
     // response file format
-    let fileFormat: ResponseFileFormat?
+    public let fileFormat: ResponseFileFormat?
     
     // the columns to select from each row
-    let fields: [ResponseFieldSelection]?
+    public let fields: [ResponseFieldSelection]?
     
     // number of rows to return [1, 500]
-    let limit: Int?
+    public let limit: Int?
     
     // out of `limit` rows, the starting row from which to return. [1, 2000]
-    let start: Int?
+    public let start: Int?
     
     // the order of the return
-    let order: [ResponseOrder?]
+    public let order: [ResponseOrder?]
 }
