@@ -58,6 +58,7 @@ public struct NarouRequest {
     public let isZankoku: Bool?
     public let isTensei: Bool?
     public let isTenni: Bool?
+    // TODO: investigate false case for isIsekai
     public let isIsekai: Bool? // both isTensei and isTenni
     
     /* MARK: Query by content metadata */
@@ -69,7 +70,7 @@ public struct NarouRequest {
     public let dialogueRatio: (min: Int?, max: Int?)?
     
     // sasie
-    public let illustrations: (min: Int?, max: Int?)?
+    public let illustrationCount: (min: Int?, max: Int?)?
     
     // time
     public let readingTime: (min: Int?, max: Int?)?
@@ -83,11 +84,16 @@ public struct NarouRequest {
     /* MARK: Query by status */
     
     // stop
-    public let shouldIncludeHiatus: Bool?
+    // {1, 2}: 1 excludes hiatus, 2 finds only hiatus
+    public let isHiatus: Bool?
     
     // last update
-    public let recentUpdate: String?
+    public let recentUpdate: QueryRecent?
     public let recentUpdateUnix: (from: Int?, to: Int?)?
 
+    // TODO: investigate false case
     public let isPickup: Bool?
+    
+    /* MARK: Response field selectors */
+    public let responseFormat: NarouResponseFormat?
 }

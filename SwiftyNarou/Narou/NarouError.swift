@@ -12,4 +12,5 @@ enum NarouError: Error {
     case MalformedUrl(malformedUrl: String)
     case MimetypeError(incorrectMimetype: String)
     case ServerError(errorCode: Int)
+    case RequestValidationError
 }

@@ -92,5 +92,5 @@ public struct NarouResponseFormat {
     public let start: Int?
     
     // the order of the return
-    public let order: [ResponseOrder?]
+    public let order: ResponseOrder?
 }
