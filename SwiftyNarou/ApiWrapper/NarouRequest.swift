@@ -96,4 +96,62 @@ public struct NarouRequest {
     
     /* MARK: Response field selectors */
     public let responseFormat: NarouResponseFormat?
+    
+    public init(
+        ncode: [String]? = nil,
+        userId: [String]? = nil,
+        word: String? = nil,
+        notWord: String? = nil,
+        inText: [QueryTextTarget]? = nil,
+        bigGenre: [BigGenre]? = nil,
+        notBigGenre: [BigGenre]? = nil,
+        genre: [Genre]? = nil,
+        notGenre: [Genre]? = nil,
+        isR15: Bool? = nil,
+        isBoysLove: Bool? = nil,
+        isGirlsLove: Bool? = nil,
+        isZankoku: Bool? = nil,
+        isTensei: Bool? = nil,
+        isTenni: Bool? = nil,
+        isIsekai: Bool? = nil,
+        charCount: (min: Int?, max: Int?)? = nil,
+        dialogueRatio: (min: Int?, max: Int?)? = nil,
+        illustrationCount: (min: Int?, max: Int?)? = nil,
+        readingTime: (min: Int?, max: Int?)? = nil,
+        novelType: QueryNovelType? = nil,
+        compositionStyle: [QueryCompositionStyle]? = nil,
+        isHiatus: Bool? = nil,
+        recentUpdate: QueryRecent? = nil,
+        recentUpdateUnix: (from: Int?, to: Int?)? = nil,
+        isPickup: Bool? = nil,
+        responseFormat: NarouResponseFormat? = nil
+    ) {
+        self.ncode = ncode
+        self.userId = userId
+        self.word = word
+        self.notWord = notWord
+        self.inText = inText
+        self.bigGenre = bigGenre
+        self.notBigGenre = notBigGenre
+        self.genre = genre
+        self.notGenre = notGenre
+        self.isR15 = isR15
+        self.isBoysLove = isBoysLove
+        self.isGirlsLove = isGirlsLove
+        self.isZankoku = isZankoku
+        self.isTensei = isTensei
+        self.isTenni = isTenni
+        self.isIsekai = isIsekai
+        self.charCount = charCount
+        self.dialogueRatio = dialogueRatio
+        self.illustrationCount = illustrationCount
+        self.readingTime = readingTime
+        self.novelType = novelType
+        self.compositionStyle = compositionStyle
+        self.isHiatus = isHiatus
+        self.recentUpdate = recentUpdate
+        self.recentUpdateUnix = recentUpdateUnix
+        self.isPickup = isPickup
+        self.responseFormat = responseFormat
+    }
 }
