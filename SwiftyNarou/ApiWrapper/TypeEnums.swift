@@ -15,40 +15,25 @@ public enum BigGenre: Int {
 }
 
 public enum Genre: Int {
-    public enum Romance: Int {
-        case isekai = 101
-        case reality = 102
-    }
-    
-    public enum Fantasy: Int {
-        case high = 201
-        case low = 202
-    }
-    
-    public enum Literature: Int {
-        case pure = 301
-        case drama = 302
-        case history = 303
-        case mystery = 304
-        case horror = 305
-        case action = 306
-        case comedy = 307
-    }
-    
-    public enum Scifi: Int {
-        case vr = 401
-        case space = 402
-        case fantasy = 403
-        case panic = 404
-    }
-    
-    public enum Other: Int {
-        case fairyTale = 9901
-        case poem = 9902
-        case essay = 9903
-        case misc = 9999
-    }
-    
+    case romanceIsekai = 101
+    case romanceReality = 102
+    case fantasyHigh = 201
+    case fantasyLow = 202
+    case literaturePure = 301
+    case literatureDrama = 302
+    case literatureHistory = 303
+    case literatureMystery = 304
+    case literatureHorror = 305
+    case literatureAction = 306
+    case literatureComedy = 307
+    case scifiVr = 401
+    case scifiSpace = 402
+    case scifiFantasy = 403
+    case scifiPanic = 404
+    case miscFairyTale = 9901
+    case miscPoem = 9902
+    case miscEssay = 9903
+    case miscOther = 9999
     case none = 9801
 }
 
