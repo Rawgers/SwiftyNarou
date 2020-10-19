@@ -93,4 +93,20 @@ public struct NarouResponseFormat {
     
     // the order of the return
     public let order: ResponseOrder?
+    
+    public init(
+        gzipCompressionLevel: Int? = nil,
+        fileFormat: ResponseFileFormat? = nil,
+        fields: [ResponseFieldSelection]? = nil,
+        limit: Int? = nil,
+        start: Int? = nil,
+        order: ResponseOrder? = nil
+    ) {
+        self.gzipCompressionLevel = gzipCompressionLevel
+        self.fileFormat = fileFormat
+        self.fields = fields
+        self.limit = limit
+        self.start = start
+        self.order = order
+    }
 }

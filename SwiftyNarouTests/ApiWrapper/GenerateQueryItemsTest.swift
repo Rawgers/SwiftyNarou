@@ -224,4 +224,72 @@ class GenerateQueryItemsTest: XCTestCase {
         url = narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
     }
+    
+    func testGenerateUrlWithResponseFormat() {
+        var request = NarouRequest(
+            responseFormat: NarouResponseFormat(
+                gzipCompressionLevel: 5
+            )
+        )
+        var expectedUrl = formatUrl(
+            "gzip=5"
+        )
+        var url = narou.generateRequestUrl(from: request)
+        XCTAssertEqual(url.absoluteString, expectedUrl)
+        
+        request = NarouRequest(
+            responseFormat: NarouResponseFormat(
+                fileFormat: .YAML
+            )
+        )
+        expectedUrl = formatUrl(
+            "out=yaml"
+        )
+        url = narou.generateRequestUrl(from: request)
+        XCTAssertEqual(url.absoluteString, expectedUrl)
+        
+        request = NarouRequest(
+            responseFormat: NarouResponseFormat(
+                fields: [.ncode, .author, .lastUpload]
+            )
+        )
+        expectedUrl = formatUrl(
+            "of=n-w-gl"
+        )
+        url = narou.generateRequestUrl(from: request)
+        XCTAssertEqual(url.absoluteString, expectedUrl)
+        
+        request = NarouRequest(
+            responseFormat: NarouResponseFormat(
+                limit: 50
+            )
+        )
+        expectedUrl = formatUrl(
+            "limit=50"
+        )
+        url = narou.generateRequestUrl(from: request)
+        XCTAssertEqual(url.absoluteString, expectedUrl)
+        
+        request = NarouRequest(
+            responseFormat: NarouResponseFormat(
+                start: 10
+            )
+        )
+        expectedUrl = formatUrl(
+            "start=10"
+        )
+        url = narou.generateRequestUrl(from: request)
+        XCTAssertEqual(url.absoluteString, expectedUrl)
+        
+        request = NarouRequest(
+            responseFormat: NarouResponseFormat(
+                order: .mostRecentUpdate
+            )
+        )
+        expectedUrl = formatUrl(
+            "order=new"
+        )
+        url = narou.generateRequestUrl(from: request)
+        XCTAssertEqual(url.absoluteString, expectedUrl)
+    }
 }

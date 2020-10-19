@@ -172,8 +172,8 @@
 			children = (
 				B874417225340EAF0001B098 /* NarouRequest.swift */,
 				B874417825340ECC0001B098 /* NarouResponse.swift */,
-				B87EEB8F2535B29700BADC10 /* TypeEnums.swift */,
 				B87EEB932535B48A00BADC10 /* NarouResponseFormat.swift */,
+				B87EEB8F2535B29700BADC10 /* TypeEnums.swift */,
 				B834F7342536779100D24042 /* Narou+ApiWrapper.swift */,
 			);
 			path = ApiWrapper;
