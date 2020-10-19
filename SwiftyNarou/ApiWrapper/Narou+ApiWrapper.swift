@@ -261,10 +261,10 @@ extension Narou {
             ))
         }
         
-        if let novelType = request.novelType {
+        if let publicationType = request.publicationType {
             queryItems.append(URLQueryItem(
                 name: "type",
-                value: novelType.rawValue
+                value: publicationType.rawValue
             ))
         }
         
@@ -314,7 +314,7 @@ extension Narou {
         
         if let isPickup = request.isPickup, isPickup {
             queryItems.append(URLQueryItem(
-                name: "stop",
+                name: "ispickup",
                 value: "1"
             ))
         }

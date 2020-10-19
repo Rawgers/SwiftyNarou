@@ -12,7 +12,7 @@ public enum QueryTextTarget: String {
     case author = "wname"
 }
 
-public enum QueryNovelType: String {
+public enum QueryPublicationType: String {
     case shortStory = "t"
     case ongoingSeries = "r"
     case completedSeries = "er"
@@ -23,8 +23,8 @@ public enum QueryNovelType: String {
 public enum QueryCompositionStyle: Int {
     case noIndentationAndManyConsecutiveLineBreaks = 1
     case noIndentationAndAverageLineBreaks = 2
-    case IndentationAndManyConsecutiveLineBreaks = 4
-    case IndentationAndAverageLineBreaks = 6
+    case indentationAndManyConsecutiveLineBreaks = 4
+    case indentationAndAverageLineBreaks = 6
 }
 
 public enum QueryRecent: String {
@@ -76,7 +76,7 @@ public struct NarouRequest {
     public let readingTime: (min: Int?, max: Int?)?
     
     // type
-    public let novelType: QueryNovelType?
+    public let publicationType: QueryPublicationType?
     
     // buntai
     public let compositionStyle: [QueryCompositionStyle]?
@@ -118,7 +118,7 @@ public struct NarouRequest {
         dialogueRatio: (min: Int?, max: Int?)? = nil,
         illustrationCount: (min: Int?, max: Int?)? = nil,
         readingTime: (min: Int?, max: Int?)? = nil,
-        novelType: QueryNovelType? = nil,
+        publicationType: QueryPublicationType? = nil,
         compositionStyle: [QueryCompositionStyle]? = nil,
         isHiatus: Bool? = nil,
         recentUpdate: QueryRecent? = nil,
@@ -146,7 +146,7 @@ public struct NarouRequest {
         self.dialogueRatio = dialogueRatio
         self.illustrationCount = illustrationCount
         self.readingTime = readingTime
-        self.novelType = novelType
+        self.publicationType = publicationType
         self.compositionStyle = compositionStyle
         self.isHiatus = isHiatus
         self.recentUpdate = recentUpdate
