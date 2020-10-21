@@ -13,6 +13,11 @@ public enum ResponseFileFormat: String {
     case JSONP = "jsonp"
 }
 
+public enum YamlStyle: Int {
+    case standard = 1
+    case new = 2
+}
+
 public enum ResponseFieldSelection: String {
     case novelTitle = "t"
     case ncode = "n"
@@ -82,6 +87,9 @@ public struct NarouResponseFormat {
     // response file format
     public let fileFormat: ResponseFileFormat?
     
+    // if response file format is yaml, set style
+    public let yamlStyle: YamlStyle?
+    
     // the columns to select from each row
     public let fields: [ResponseFieldSelection]?
     
@@ -97,6 +105,7 @@ public struct NarouResponseFormat {
     public init(
         gzipCompressionLevel: Int? = nil,
         fileFormat: ResponseFileFormat? = nil,
+        yamlStyle: YamlStyle? = nil,
         fields: [ResponseFieldSelection]? = nil,
         limit: Int? = nil,
         start: Int? = nil,
@@ -104,6 +113,7 @@ public struct NarouResponseFormat {
     ) {
         self.gzipCompressionLevel = gzipCompressionLevel
         self.fileFormat = fileFormat
+        self.yamlStyle = yamlStyle
         self.fields = fields
         self.limit = limit
         self.start = start

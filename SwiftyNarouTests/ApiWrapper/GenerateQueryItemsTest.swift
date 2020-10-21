@@ -10,6 +10,23 @@ import XCTest
 
 class GenerateQueryItemsTest: XCTestCase {
     let narou = Narou()
+    
+    func testFetchNarouApi() {
+        let expectation = self.expectation(description: "Fetching api.")
+        let request = NarouRequest(
+            responseFormat: NarouResponseFormat(
+                fileFormat: .JSON,
+                limit: 50
+            )
+        )
+        narou.fetchNarouApi(request: request) { data, error in
+            XCTAssertNil(error)
+            XCTAssertNotNil(data)
+            XCTAssertEqual(data!.count, 50)
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 10, handler: nil)
+    }
 
     func testGenerateUrlWithNcode() {
         var request = NarouRequest(
@@ -250,6 +267,17 @@ class GenerateQueryItemsTest: XCTestCase {
         
         request = NarouRequest(
             responseFormat: NarouResponseFormat(
+                yamlStyle: .new
+            )
+        )
+        expectedUrl = formatUrl(
+            "libtype=2"
+        )
+        url = narou.generateRequestUrl(from: request)
+        XCTAssertEqual(url.absoluteString, expectedUrl)
+        
+        request = NarouRequest(
+            responseFormat: NarouResponseFormat(
                 fields: [.ncode, .author, .lastUpload]
             )
         )
@@ -265,7 +293,7 @@ class GenerateQueryItemsTest: XCTestCase {
             )
         )
         expectedUrl = formatUrl(
-            "limit=50"
+            "lim=50"
         )
         url = narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)

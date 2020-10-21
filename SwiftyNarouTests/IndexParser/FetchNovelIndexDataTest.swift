@@ -18,10 +18,10 @@ class FetchNovelIndexDataTest: XCTestCase {
     func testfetchNovelIndexData() {
         let expectation = self.expectation(description: "Fetching novel index.")
         let url = URL(string: "https://ncode.syosetu.com/n4251cr/")!
-        narou.fetchNarou(url: url, mimeType: "text/html") { data, error in
+        narou.fetchNarou(url: url) { data, error in
             XCTAssertNil(error)
             XCTAssertNotNil(data)
-            XCTAssertTrue(data != "")
+            XCTAssertTrue(String(data: data!, encoding: .utf8)! != "")
             expectation.fulfill()
         }
         waitForExpectations(timeout: 10, handler: nil)

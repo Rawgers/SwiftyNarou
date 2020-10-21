@@ -8,11 +8,28 @@
 extension Narou {
     public func fetchNarouApi(
         request: NarouRequest,
-        _ completion: (Data?, Error?) -> Void
+        _ completion: @escaping ([NarouResponse]?, Error?) -> Void
     ) {
         let url = generateRequestUrl(from: request)
-        fetchNarou(url: url, mimeType: "text/plain") { data, error in
-            print(data!)
+        fetchNarou(url: url) { data, error in
+            if error != nil {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
+                return
+            }
+            
+            if data == nil {
+                DispatchQueue.main.async {
+                    completion(nil, nil)
+                }
+                return
+            }
+            
+            let response = self.parseJsonResponse(data!)
+            DispatchQueue.main.async {
+                completion(response, error)
+            }
         }
     }
     
@@ -341,6 +358,13 @@ extension Narou {
             ))
         }
         
+        if let yamlStyle = format.yamlStyle {
+            queryItems.append(URLQueryItem(
+                name: "libtype",
+                value: String(yamlStyle.rawValue)
+            ))
+        }
+        
         if let fields = format.fields {
             queryItems.append(URLQueryItem(
                 name: "of",
@@ -352,7 +376,7 @@ extension Narou {
         
         if let limit = format.limit {
             queryItems.append(URLQueryItem(
-                name: "limit",
+                name: "lim",
                 value: String(limit)
             ))
         }

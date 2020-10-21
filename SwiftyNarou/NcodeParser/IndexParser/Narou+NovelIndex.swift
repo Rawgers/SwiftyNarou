@@ -28,7 +28,7 @@ extension Narou {
             return
         }
         
-        fetchNarou(url: url, mimeType: "text/html") { content, error in
+        fetchNarou(url: url) { content, error in
             if error != nil {
                 DispatchQueue.main.async {
                     completionHandler(nil, error)
@@ -36,7 +36,12 @@ extension Narou {
                 return
             }
             
-            let novelIndex = self.filterNovelIndexHtml(html: content!)
+            let novelIndex = self.filterNovelIndexHtml(
+                html: String(
+                    data: content!,
+                    encoding: .utf8
+                ) ?? ""
+            )
             DispatchQueue.main.async {
                 completionHandler(novelIndex, nil)
             }

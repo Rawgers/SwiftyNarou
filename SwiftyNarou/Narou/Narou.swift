@@ -17,8 +17,7 @@ public class Narou {
     
     func fetchNarou(
         url: URL,
-        mimeType expectedMimetype: String,
-        _ completionHandler: @escaping (String?, Error?) -> Void
+        _ completionHandler: @escaping (Data?, Error?) -> Void
     ) {
         task?.cancel()
         
@@ -40,18 +39,8 @@ public class Narou {
                 return
             }
             
-            if let mimeType = httpResponse.mimeType,
-                mimeType != expectedMimetype {
-                completionHandler(
-                    nil,
-                    NarouError.MimetypeError(incorrectMimetype: mimeType)
-                )
-                return
-            }
-            
-            if let contentData = data,
-                let content = String(data: contentData, encoding: .utf8) {
-                completionHandler(content, nil)
+            if let contentData = data {
+                completionHandler(contentData, nil)
             } else {
                 completionHandler(
                     nil,
