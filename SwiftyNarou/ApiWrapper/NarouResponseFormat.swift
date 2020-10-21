@@ -111,7 +111,11 @@ public struct NarouResponseFormat {
         start: Int? = nil,
         order: ResponseOrder? = nil
     ) {
-        self.gzipCompressionLevel = gzipCompressionLevel
+        self.gzipCompressionLevel = gzipCompressionLevel != nil
+            ? 1...5 ~= gzipCompressionLevel!
+                ? gzipCompressionLevel
+                : nil
+            : nil
         self.fileFormat = fileFormat
         self.yamlStyle = yamlStyle
         self.fields = fields

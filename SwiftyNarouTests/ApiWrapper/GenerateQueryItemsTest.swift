@@ -10,23 +10,6 @@ import XCTest
 
 class GenerateQueryItemsTest: XCTestCase {
     let narou = Narou()
-    
-    func testFetchNarouApi() {
-        let expectation = self.expectation(description: "Fetching api.")
-        let request = NarouRequest(
-            responseFormat: NarouResponseFormat(
-                fileFormat: .JSON,
-                limit: 50
-            )
-        )
-        narou.fetchNarouApi(request: request) { data, error in
-            XCTAssertNil(error)
-            XCTAssertNotNil(data)
-            XCTAssertEqual(data!.count, 50)
-            expectation.fulfill()
-        }
-        waitForExpectations(timeout: 10, handler: nil)
-    }
 
     func testGenerateUrlWithNcode() {
         var request = NarouRequest(
@@ -252,6 +235,16 @@ class GenerateQueryItemsTest: XCTestCase {
             "gzip=5"
         )
         var url = narou.generateRequestUrl(from: request)
+        XCTAssertEqual(url.absoluteString, expectedUrl)
+        
+        // test invalid gzipCompressionLevel doesn't get written into url
+        request = NarouRequest(
+            responseFormat: NarouResponseFormat(
+                gzipCompressionLevel: 6
+            )
+        )
+        expectedUrl = formatUrl("")
+        url = narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(

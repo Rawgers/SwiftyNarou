@@ -13,6 +13,8 @@
 		B83FF45C252822C600D8B197 /* ParseNovelIndexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FF45B252822C600D8B197 /* ParseNovelIndexTest.swift */; };
 		B83FF45E252822C600D8B197 /* SwiftyNarou.h in Headers */ = {isa = PBXBuildFile; fileRef = B83FF450252822C600D8B197 /* SwiftyNarou.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8577911252D93280095165A /* FetchNovelIndexDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8577910252D93280095165A /* FetchNovelIndexDataTest.swift */; };
+		B85F271E2540A786009AEE1F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85F271D2540A786009AEE1F /* Utils.swift */; };
+		B85F27372540B152009AEE1F /* FetchApiTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85F27362540B152009AEE1F /* FetchApiTest.swift */; };
 		B8706ECE253E109700791FF8 /* Narou+ParseJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8706ECD253E109700791FF8 /* Narou+ParseJson.swift */; };
 		B874417325340EAF0001B098 /* NarouRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874417225340EAF0001B098 /* NarouRequest.swift */; };
 		B874417925340ECC0001B098 /* NarouResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B874417825340ECC0001B098 /* NarouResponse.swift */; };
@@ -29,7 +31,7 @@
 		B8C9F1452530CDAE00B0DEA5 /* FetchSectionContentTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9F1442530CDAE00B0DEA5 /* FetchSectionContentTest.swift */; };
 		B8DD437F2529C1EB0055B3D5 /* Narou+SectionContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DD437E2529C1EB0055B3D5 /* Narou+SectionContent.swift */; };
 		B8DD74CF252D2CD600A0747F /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DD74CE252D2CD600A0747F /* TestUtils.swift */; };
-		B8ED4511253EC9E40048A3B8 /* JsonParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED4510253EC9E40048A3B8 /* JsonParserTest.swift */; };
+		B8ED4511253EC9E40048A3B8 /* ParseJsonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED4510253EC9E40048A3B8 /* ParseJsonTest.swift */; };
 		EF67772D148832F9A2B4FAB7 /* libPods-SwiftyNarouTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5710F7BC2FF631CD93BEB3 /* libPods-SwiftyNarouTests.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		B83FF45B252822C600D8B197 /* ParseNovelIndexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseNovelIndexTest.swift; sourceTree = "<group>"; };
 		B83FF45D252822C600D8B197 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8577910252D93280095165A /* FetchNovelIndexDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchNovelIndexDataTest.swift; sourceTree = "<group>"; };
+		B85F271D2540A786009AEE1F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		B85F27362540B152009AEE1F /* FetchApiTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchApiTest.swift; sourceTree = "<group>"; };
 		B8706ECD253E109700791FF8 /* Narou+ParseJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Narou+ParseJson.swift"; sourceTree = "<group>"; };
 		B874417225340EAF0001B098 /* NarouRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarouRequest.swift; sourceTree = "<group>"; };
 		B874417825340ECC0001B098 /* NarouResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarouResponse.swift; sourceTree = "<group>"; };
@@ -73,7 +77,7 @@
 		B8C9F1442530CDAE00B0DEA5 /* FetchSectionContentTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSectionContentTest.swift; sourceTree = "<group>"; };
 		B8DD437E2529C1EB0055B3D5 /* Narou+SectionContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Narou+SectionContent.swift"; sourceTree = "<group>"; };
 		B8DD74CE252D2CD600A0747F /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
-		B8ED4510253EC9E40048A3B8 /* JsonParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParserTest.swift; sourceTree = "<group>"; };
+		B8ED4510253EC9E40048A3B8 /* ParseJsonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseJsonTest.swift; sourceTree = "<group>"; };
 		ECDDD2D4D3B3EA1810FB45B1 /* Pods-SwiftyNarouTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyNarouTests.debug.xcconfig"; path = "Target Support Files/Pods-SwiftyNarouTests/Pods-SwiftyNarouTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +159,7 @@
 				B81401D7252AF6B30011D21E /* NcodeParser */,
 				B83FF450252822C600D8B197 /* SwiftyNarou.h */,
 				B83FF451252822C600D8B197 /* Info.plist */,
+				B85F271D2540A786009AEE1F /* Utils.swift */,
 			);
 			path = SwiftyNarou;
 			sourceTree = "<group>";
@@ -206,7 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				B8B65AB92537ACE200BF00B4 /* GenerateQueryItemsTest.swift */,
-				B8ED4510253EC9E40048A3B8 /* JsonParserTest.swift */,
+				B8ED4510253EC9E40048A3B8 /* ParseJsonTest.swift */,
+				B85F27362540B152009AEE1F /* FetchApiTest.swift */,
 			);
 			path = ApiWrapper;
 			sourceTree = "<group>";
@@ -400,6 +406,7 @@
 				B8955EE625299A6700F16B2A /* Narou.swift in Sources */,
 				B8840B422532B9280013BEE5 /* Narou+NovelIndex.swift in Sources */,
 				B87EEB902535B29700BADC10 /* TypeEnums.swift in Sources */,
+				B85F271E2540A786009AEE1F /* Utils.swift in Sources */,
 				B874417925340ECC0001B098 /* NarouResponse.swift in Sources */,
 				B87EEB942535B48A00BADC10 /* NarouResponseFormat.swift in Sources */,
 				B874417325340EAF0001B098 /* NarouRequest.swift in Sources */,
@@ -418,9 +425,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8B65ABA2537ACE200BF00B4 /* GenerateQueryItemsTest.swift in Sources */,
+				B85F27372540B152009AEE1F /* FetchApiTest.swift in Sources */,
 				B8577911252D93280095165A /* FetchNovelIndexDataTest.swift in Sources */,
 				B8DD74CF252D2CD600A0747F /* TestUtils.swift in Sources */,
-				B8ED4511253EC9E40048A3B8 /* JsonParserTest.swift in Sources */,
+				B8ED4511253EC9E40048A3B8 /* ParseJsonTest.swift in Sources */,
 				B83FF45C252822C600D8B197 /* ParseNovelIndexTest.swift in Sources */,
 				B8C9F1452530CDAE00B0DEA5 /* FetchSectionContentTest.swift in Sources */,
 				B8BD1708252F0943003E79B9 /* ParseSectionContentsTest.swift in Sources */,

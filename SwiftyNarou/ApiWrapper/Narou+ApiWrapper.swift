@@ -10,8 +10,7 @@ extension Narou {
         request: NarouRequest,
         _ completion: @escaping ([NarouResponse]?, Error?) -> Void
     ) {
-        let url = generateRequestUrl(from: request)
-        fetchNarou(url: url) { data, error in
+        fetchNarouApiRaw(request: request) { data, error in
             if error != nil {
                 DispatchQueue.main.async {
                     completion(nil, error)
@@ -19,17 +18,39 @@ extension Narou {
                 return
             }
             
-            if data == nil {
+            guard var data = data else {
                 DispatchQueue.main.async {
                     completion(nil, nil)
                 }
                 return
             }
             
-            let response = self.parseJsonResponse(data!)
+            if request.responseFormat?.gzipCompressionLevel != nil {
+                data = gunzip(data)
+            }
+            
+            let response: [NarouResponse]
+            switch request.responseFormat?.fileFormat {
+            case .JSON:
+                response = self.parseJsonResponse(data)
+            default:
+                response = []
+            }
+            
             DispatchQueue.main.async {
                 completion(response, error)
+                return
             }
+        }
+    }
+    
+    public func fetchNarouApiRaw(
+        request: NarouRequest,
+        _ completion: @escaping (Data?, Error?) -> Void
+    ) {
+        let url = generateRequestUrl(from: request)
+        fetchNarou(url: url) { data, error in
+            completion(data, error)
         }
     }
     

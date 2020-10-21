@@ -8,7 +8,7 @@
 import XCTest
 @testable import SwiftyNarou
 
-class JsonParserTest: XCTestCase {
+class ParseJsonTest: XCTestCase {
     let narou = Narou()
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()

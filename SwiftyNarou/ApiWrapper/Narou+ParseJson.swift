@@ -9,8 +9,8 @@ import SwiftyJSON
 
 extension Narou {
     func parseJsonResponse(_ response: Data) -> [NarouResponse] {
-        let json = try! JSON(data: response)
-        let novels = json.array ?? []
+        let json = try? JSON(data: response)
+        let novels = json?.array ?? []
         
         var parsedResponses = [NarouResponse]()
         let dateFormatter = DateFormatter()
