@@ -8,9 +8,8 @@ Add `pod 'SwiftyNarou'` to your Podfile and run `pod install`.
 To use, `import SwiftyNarou`.
 
 ## Usage:
-### Fetch result of querying the Narou API
-As of version 1.0.1, you _must_ specify the .JSON as the file format.
-Gzip compression also does not work.
+### Fetch parsed results of querying the Narou API
+As of version 1.1.0, you _must_ specify the .JSON as the file format because only the JSON parser has been implemented.
 ```
 let narou = Narou()
 let request = NarouRequest(
@@ -26,6 +25,29 @@ let request = NarouRequest(
 narou.fetchNarouApi(request) { data, error in
   if err != nil, let res: [NarouResponse] = data {
     // do something
+  }
+}
+```
+
+### Fetch raw results of querying the Narou API
+`fetchNarouApiRaw`, does not dispatch to the main queue, so any completion logic must include a dispatch.
+```
+let narou = Narou()
+let request = NarouRequest(
+  bigGenre: .fantasy,
+  ... (more request params)
+  responseFormat: NarouResponseFormat(
+    fileFormat: .JSON, // this is mandatory for now.
+    fields: [.ncode, .title, .author, ...] // select columns to return (highly recommended)
+    limit: 10, // recommended
+    ... (more output formatting)
+  )
+)
+narou.fetchNarouApiRaw(request) { data, error in
+  if err != nil, let res: [NarouResponse] = data {
+    DispatchQueue.main.async {
+      // do something
+    }
   }
 }
 ```
