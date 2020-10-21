@@ -1,6 +1,5 @@
 target 'SwiftyNarou' do
   pod 'SwiftSoup'
-  pod 'Yaml'
   pod 'SwiftyJSON'
  
   target 'SwiftyNarouTests' do
