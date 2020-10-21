@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "SwiftyNarou"
-  spec.version      = "1.0.0"
+  spec.version      = "1.1.0"
   spec.summary      = 'A Swift wrapper for the Narou API. Also supports retrieving novel contents from ncode URLs.'
 
   spec.description  = <<-DESC
@@ -21,4 +21,5 @@ SwiftyNarou is a Swift wrapper around the Narou API. In addition to supporting a
   spec.exclude_files = "Classes/Exclude"
   spec.dependency "SwiftSoup"
   spec.dependency "SwiftyJSON"
+  spec.dependency "GzipSwift"
 end
