@@ -29,7 +29,7 @@ public enum Genre: Int {
     case scifiVr = 401
     case scifiSpace = 402
     case scifiFantasy = 403
-    case scifiPanic = 404
+    case scifiThriller = 404
     case miscFairyTale = 9901
     case miscPoem = 9902
     case miscEssay = 9903
