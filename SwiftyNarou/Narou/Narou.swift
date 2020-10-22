@@ -11,7 +11,7 @@ public class Narou {
     let session: URLSession = URLSession.shared
     var task: URLSessionDataTask?
     
-    init() {
+    public init() {
         SwiftSoup.OutputSettings().prettyPrint(pretty: false)
     }
     
