@@ -11,7 +11,6 @@ To use, `import SwiftyNarou`.
 ### Fetch parsed results of querying the Narou API
 As of version 1.1.0, you _must_ specify the .JSON as the file format because only the JSON parser has been implemented.
 ```
-let narou = Narou()
 let request = NarouRequest(
   bigGenre: .fantasy,
   ... (more request params)
@@ -22,7 +21,7 @@ let request = NarouRequest(
     ... (more output formatting)
   )
 )
-narou.fetchNarouApi(request) { data, error in
+Narou.fetchNarouApi(request) { data, error in
   if err != nil, let res: [NarouResponse] = data {
     // do something
   }
@@ -32,7 +31,6 @@ narou.fetchNarouApi(request) { data, error in
 ### Fetch raw results of querying the Narou API
 `fetchNarouApiRaw`, does not dispatch to the main queue, so any completion logic must include a dispatch.
 ```
-let narou = Narou()
 let request = NarouRequest(
   bigGenre: .fantasy,
   ... (more request params)
@@ -43,7 +41,7 @@ let request = NarouRequest(
     ... (more output formatting)
   )
 )
-narou.fetchNarouApiRaw(request) { data, error in
+Narou.fetchNarouApiRaw(request) { data, error in
   if err != nil, let res: [NarouResponse] = data {
     DispatchQueue.main.async {
       // do something
@@ -55,8 +53,7 @@ narou.fetchNarouApiRaw(request) { data, error in
 ### Fetch a table of contents page:
 ```
 let ncode = "n12345"
-let narou = Narou()
-narou.fetchNovelIndex(ncode) { data, error in
+Narou.fetchNovelIndex(ncode) { data, error in
   if err != nil, let novelIndex = data {
     // do something
   }
@@ -66,8 +63,7 @@ narou.fetchNovelIndex(ncode) { data, error in
 ### Fetch contents of a section:
 ```
 let ncode = "n12345"
-let narou = Narou()
-narou.fetchSectionContent(ncode) { data, error in
+Narou.fetchSectionContent(ncode) { data, error in
   if err != nil, let novelIndex = data {
     // do something
   }
