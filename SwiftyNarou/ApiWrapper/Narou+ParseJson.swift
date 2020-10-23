@@ -16,8 +16,8 @@ extension Narou {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         for novel in novels[1...] {
-            let bigGenreValue = novel["biggenre"].int
-            let genreValue = novel["genre"].int
+            let genreValue = novel["biggenre"].int
+            let subgenreValue = novel["genre"].int
             let keywordValue = novel["keyword"].string
             let firstUploadValue = novel["general_firstup"].string
             let lastUploadValue = novel["general_lastup"].string
@@ -40,11 +40,11 @@ extension Narou {
                 userId: novel["userid"].int,
                 author: novel["writer"].string,
                 synopsis: novel["story"].string,
-                biggenre: bigGenreValue != nil
-                    ? BigGenre(rawValue: bigGenreValue!)
-                    : nil,
                 genre: genreValue != nil
                     ? Genre(rawValue: genreValue!)
+                    : nil,
+                subgenre: subgenreValue != nil
+                    ? Subgenre(rawValue: subgenreValue!)
                     : nil,
                 keyword: keywordValue != nil
                     ? keywordValue!.components(separatedBy: " ")

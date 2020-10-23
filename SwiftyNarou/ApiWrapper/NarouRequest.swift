@@ -46,10 +46,10 @@ public struct NarouRequest {
     public let inText: [QueryTextTarget]?
     
     /* MARK: Query by genre */
-    public let bigGenre: [BigGenre]?
-    public let notBigGenre: [BigGenre]?
     public let genre: [Genre]?
     public let notGenre: [Genre]?
+    public let subgenre: [Subgenre]?
+    public let notSubgenre: [Subgenre]?
     
     /* MARK: Query by theme */
     public let isR15: Bool?
@@ -103,10 +103,10 @@ public struct NarouRequest {
         word: String? = nil,
         notWord: String? = nil,
         inText: [QueryTextTarget]? = nil,
-        bigGenre: [BigGenre]? = nil,
-        notBigGenre: [BigGenre]? = nil,
         genre: [Genre]? = nil,
         notGenre: [Genre]? = nil,
+        subgenre: [Subgenre]? = nil,
+        notSubgenre: [Subgenre]? = nil,
         isR15: Bool? = nil,
         isBoysLove: Bool? = nil,
         isGirlsLove: Bool? = nil,
@@ -131,10 +131,10 @@ public struct NarouRequest {
         self.word = word
         self.notWord = notWord
         self.inText = inText
-        self.bigGenre = bigGenre
-        self.notBigGenre = notBigGenre
         self.genre = genre
         self.notGenre = notGenre
+        self.subgenre = subgenre
+        self.notSubgenre = notSubgenre
         self.isR15 = isR15
         self.isBoysLove = isBoysLove
         self.isGirlsLove = isGirlsLove

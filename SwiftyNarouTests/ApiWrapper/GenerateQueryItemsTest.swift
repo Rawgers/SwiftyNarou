@@ -57,28 +57,28 @@ class GenerateQueryItemsTest: XCTestCase {
     
     func testGenerateUrlWithGenre() {
         var request = NarouRequest(
-            bigGenre: [.romance, .scifi]
+            genre: [.romance, .scifi]
         )
         var expectedUrl = formatUrl("biggenre=1-4")
         var url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
-            notBigGenre: [.fantasy, .literature]
+            notGenre: [.fantasy, .literature]
         )
         expectedUrl = formatUrl("notbiggenre=2-3")
         url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
-            genre: [.fantasyHigh, .scifiVr]
+            subgenre: [.fantasyHigh, .scifiVr]
         )
         expectedUrl = formatUrl("genre=201-401")
         url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
-            notGenre: [.literatureMystery, .none]
+            notSubgenre: [.literatureMystery, .none]
         )
         expectedUrl = formatUrl("notgenre=304-9801")
         url = Narou.generateRequestUrl(from: request)

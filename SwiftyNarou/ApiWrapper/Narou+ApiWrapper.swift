@@ -138,27 +138,9 @@ extension Narou {
     ) -> [URLQueryItem] {
         var queryItems = [URLQueryItem]()
         
-        if let bigGenre = request.bigGenre {
-            queryItems.append(URLQueryItem(
-                name: "biggenre",
-                value: bigGenre.map {
-                    String($0.rawValue)
-                }.joined(separator: "-")
-            ))
-        }
-        
-        if let notBigGenre = request.notBigGenre {
-            queryItems.append(URLQueryItem(
-                name: "notbiggenre",
-                value: notBigGenre.map {
-                    String($0.rawValue)
-                }.joined(separator: "-")
-            ))
-        }
-        
         if let genre = request.genre {
             queryItems.append(URLQueryItem(
-                name: "genre",
+                name: "biggenre",
                 value: genre.map {
                     String($0.rawValue)
                 }.joined(separator: "-")
@@ -167,8 +149,26 @@ extension Narou {
         
         if let notGenre = request.notGenre {
             queryItems.append(URLQueryItem(
-                name: "notgenre",
+                name: "notbiggenre",
                 value: notGenre.map {
+                    String($0.rawValue)
+                }.joined(separator: "-")
+            ))
+        }
+        
+        if let subgenre = request.subgenre {
+            queryItems.append(URLQueryItem(
+                name: "genre",
+                value: subgenre.map {
+                    String($0.rawValue)
+                }.joined(separator: "-")
+            ))
+        }
+        
+        if let notSubgenre = request.notSubgenre {
+            queryItems.append(URLQueryItem(
+                name: "notgenre",
+                value: notSubgenre.map {
                     String($0.rawValue)
                 }.joined(separator: "-")
             ))

@@ -22,10 +22,10 @@ public struct NarouResponse: Equatable {
     public let synopsis: String?
 
     // major genre categories
-    public let biggenre: BigGenre?
+    public let genre: Genre?
 
     // more granular breakdown of genre categories
-    public let genre: Genre?
+    public let subgenre: Subgenre?
 
     // various tags assigned to a novel
     public let keyword: [String]?
@@ -126,8 +126,8 @@ public struct NarouResponse: Equatable {
         userId: Int? = nil,
         author: String? = nil,
         synopsis: String? = nil,
-        biggenre: BigGenre? = nil,
         genre: Genre? = nil,
+        subgenre: Subgenre? = nil,
         keyword: [String]? = nil,
         firstUpload: Date? = nil,
         lastUpload: Date? = nil,
@@ -165,8 +165,8 @@ public struct NarouResponse: Equatable {
         self.userId = userId
         self.author = author
         self.synopsis = synopsis
-        self.biggenre = biggenre
         self.genre = genre
+        self.subgenre = subgenre
         self.keyword = keyword
         self.firstUpload = firstUpload
         self.lastUpload = lastUpload
@@ -206,8 +206,8 @@ public struct NarouResponse: Equatable {
             && lhs.userId == rhs.userId
             && lhs.author == rhs.author
             && lhs.synopsis == rhs.synopsis
-            && lhs.biggenre == rhs.biggenre
             && lhs.genre == rhs.genre
+            && lhs.subgenre == rhs.subgenre
             && lhs.keyword == rhs.keyword
             && lhs.lastUpload == rhs.lastUpload
             && lhs.novelType == rhs.novelType
