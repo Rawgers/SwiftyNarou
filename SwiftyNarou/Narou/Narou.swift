@@ -9,19 +9,12 @@ import SwiftSoup
 
 public class Narou {
     let session: URLSession = URLSession.shared
-    var task: URLSessionDataTask?
-    
-    public init() {
-        SwiftSoup.OutputSettings().prettyPrint(pretty: false)
-    }
     
     func fetchNarou(
         url: URL,
         _ completionHandler: @escaping (Data?, Error?) -> Void
     ) {
-        task?.cancel()
-        
-        task = session.dataTask(with: url) { data, response, error in
+        let task = session.dataTask(with: url) { data, response, error in
             if let error = error {
                 completionHandler(
                     nil,
@@ -48,7 +41,6 @@ public class Narou {
                 )
             }
         }
-        
-        task?.resume()
+        task.resume()
     }
 }
