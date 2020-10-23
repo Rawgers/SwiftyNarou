@@ -5,7 +5,7 @@
 //  Created by Roger Luo on 10/13/20.
 //
 
-public enum Genre: Int {
+public enum Genre: Int, CaseIterable {
     case romance = 1
     case fantasy = 2
     case literature = 3
@@ -14,7 +14,7 @@ public enum Genre: Int {
     case none = 98
 }
 
-public enum Subgenre: Int {
+public enum Subgenre: Int, CaseIterable {
     case romanceIsekai = 101
     case romanceReality = 102
     case fantasyHigh = 201
