@@ -120,7 +120,7 @@ public struct NarouResponse: Equatable {
     // most recent edit date
     public let lastEdit: Date?
     
-    init(
+    public init(
         title: String? = nil,
         ncode: String? = nil,
         userId: Int? = nil,
