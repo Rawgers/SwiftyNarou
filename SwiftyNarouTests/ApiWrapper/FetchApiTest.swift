@@ -10,8 +10,6 @@ import Gzip
 @testable import SwiftyNarou
 
 class FetchApiTest: XCTestCase {
-    let narou = Narou()
-    
     func testFetchNarouApiJson() {
         let expectation = self.expectation(description: "Fetching api.")
         let request = NarouRequest(
@@ -20,7 +18,7 @@ class FetchApiTest: XCTestCase {
                 limit: 50
             )
         )
-        narou.fetchNarouApi(request: request) { data, error in
+        Narou.fetchNarouApi(request: request) { data, error in
             XCTAssertNil(error)
             XCTAssertNotNil(data)
             XCTAssertEqual(data!.count, 50)
@@ -38,7 +36,7 @@ class FetchApiTest: XCTestCase {
                 limit: 5
             )
         )
-        narou.fetchNarouApi(request: request) { data, error in
+        Narou.fetchNarouApi(request: request) { data, error in
             XCTAssertNil(error)
             XCTAssertNotNil(data)
             XCTAssertEqual(data!.count, 5)

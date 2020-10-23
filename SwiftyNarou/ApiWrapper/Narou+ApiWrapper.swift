@@ -6,7 +6,7 @@
 //
 
 extension Narou {
-    public func fetchNarouApi(
+    public static func fetchNarouApi(
         request: NarouRequest,
         _ completion: @escaping ([NarouResponse]?, Error?) -> Void
     ) {
@@ -44,7 +44,7 @@ extension Narou {
         }
     }
     
-    public func fetchNarouApiRaw(
+    public static func fetchNarouApiRaw(
         request: NarouRequest,
         _ completion: @escaping (Data?, Error?) -> Void
     ) {
@@ -54,14 +54,14 @@ extension Narou {
         }
     }
     
-    func generateRequestUrl(from request: NarouRequest) -> URL {
+    static func generateRequestUrl(from request: NarouRequest) -> URL {
         var urlComponents = URLComponents(string: Constants.SYOSETU_API_URL)!
         let queryItems = generateQueryItems(from: request)
         urlComponents.queryItems = queryItems
         return (urlComponents.url?.absoluteURL)!
     }
     
-    private func generateQueryItems(
+    private static func generateQueryItems(
         from request: NarouRequest
     ) -> [URLQueryItem] {
         var queryItems = [URLQueryItem]()
@@ -80,7 +80,7 @@ extension Narou {
         return queryItems
     }
     
-    private func generateIdQueryItems(
+    private static func generateIdQueryItems(
         from request: NarouRequest
     ) -> [URLQueryItem] {
         var queryItems = [URLQueryItem]()
@@ -102,7 +102,7 @@ extension Narou {
         return queryItems
     }
     
-    private func generateTextQueryItems(
+    private static func generateTextQueryItems(
         from request: NarouRequest
     ) -> [URLQueryItem] {
         var queryItems = [URLQueryItem]()
@@ -133,7 +133,7 @@ extension Narou {
         return queryItems
     }
     
-    private func generateGenreQueryItems(
+    private static func generateGenreQueryItems(
         from request: NarouRequest
     ) -> [URLQueryItem] {
         var queryItems = [URLQueryItem]()
@@ -177,7 +177,7 @@ extension Narou {
         return queryItems
     }
     
-    private func generateThemeQueryItems(
+    private static func generateThemeQueryItems(
         from request: NarouRequest
     ) -> [URLQueryItem] {
         var queryItems = [URLQueryItem]()
@@ -234,7 +234,7 @@ extension Narou {
         return queryItems
     }
     
-    private func generateContentMetadataQueryItems(
+    private static func generateContentMetadataQueryItems(
         from request: NarouRequest
     ) -> [URLQueryItem] {
         var queryItems = [URLQueryItem]()
@@ -318,7 +318,7 @@ extension Narou {
         return queryItems
     }
     
-    private func generateStatusQueryItems(
+    private static func generateStatusQueryItems(
         from request: NarouRequest
     ) -> [URLQueryItem] {
         var queryItems = [URLQueryItem]()
@@ -360,7 +360,7 @@ extension Narou {
         return queryItems
     }
     
-    private func generateResponseFormatQueryItems(
+    private static func generateResponseFormatQueryItems(
         from format: NarouResponseFormat
     ) -> [URLQueryItem] {
         var queryItems = [URLQueryItem]()

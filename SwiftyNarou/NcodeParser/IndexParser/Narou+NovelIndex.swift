@@ -8,12 +8,12 @@
 import SwiftSoup
 
 extension Narou {
-    public func fetchNovelIndex(ncode: String, completionHandler: @escaping (NovelIndex?, Error?) -> Void) {
+    public static func fetchNovelIndex(ncode: String, completionHandler: @escaping (NovelIndex?, Error?) -> Void) {
         let urlString = Constants.SYOSETU_NCODE_URL + ncode
         fetchNovelIndex(urlString: urlString, completionHandler: completionHandler)
     }
     
-    public func fetchNovelIndex(urlString: String, completionHandler: @escaping (NovelIndex?, Error?) -> Void) {
+    public static func fetchNovelIndex(urlString: String, completionHandler: @escaping (NovelIndex?, Error?) -> Void) {
         guard let url = URL(string: urlString) else {
             completionHandler(nil, NarouError.MalformedUrl(malformedUrl: urlString))
             return
@@ -21,7 +21,7 @@ extension Narou {
         fetchNovelIndex(url: url, completionHandler: completionHandler)
     }
     
-    public func fetchNovelIndex(url: URL, completionHandler: @escaping (NovelIndex?, Error?) -> Void) {
+    public static func fetchNovelIndex(url: URL, completionHandler: @escaping (NovelIndex?, Error?) -> Void) {
         let ncode = url.pathComponents[1]
         if ncode.first != "n" {
             completionHandler(nil, NarouError.IncorrectNcode(badNcode: ncode))
@@ -48,7 +48,7 @@ extension Narou {
         }
     }
 
-    func filterNovelIndexHtml(html: String) -> NovelIndex? {
+    static func filterNovelIndexHtml(html: String) -> NovelIndex? {
         do {
             let doc = try SwiftSoup.parse(html)
             let containerSelection = try doc.select("#novel_color").first()!
@@ -92,17 +92,17 @@ extension Narou {
         }
     }
     
-    func parseSeriesInfo(selection: Element) -> (seriesTitle: String, ncode: String) {
+    static func parseSeriesInfo(selection: Element) -> (seriesTitle: String, ncode: String) {
         let seriesTitle = (try? selection.text()) ?? ""
         let seriesNcode = (try? selection.child(0).attr("href"))?.trimmingCharacters(in: ["/"]) ?? ""
         return (seriesTitle, seriesNcode)
     }
     
-    func parseNovelTitle(selection: Element) -> String {
+    static func parseNovelTitle(selection: Element) -> String {
         return (try? selection.text()) ?? ""
     }
     
-    func parseWriter(selection: Element) -> String {
+    static func parseWriter(selection: Element) -> String {
         let writerLabel = (try? selection.text()) ?? ""
         guard let colonIndex = writerLabel.firstIndex(of: "：") else {
             return writerLabel
@@ -111,7 +111,7 @@ extension Narou {
         return String(writerLabel[writerIndex...])
     }
     
-    func parseSynopsis(selection: Element) -> String {
+    static func parseSynopsis(selection: Element) -> String {
         do {
             try selection.select("br").after("\\n")
             let rawSynopsis = try selection.text()
@@ -124,7 +124,7 @@ extension Narou {
         }
     }
     
-    func parseChapters(selection: Element) -> [Chapter] {
+    static func parseChapters(selection: Element) -> [Chapter] {
         var chapters = [Chapter]()
         var title = ""
         var sections = [Section]()
@@ -149,7 +149,7 @@ extension Narou {
         return chapters
     }
     
-    func parseSection(selection: Element) -> Section {
+    static func parseSection(selection: Element) -> Section {
         var title = ""
         var ncode = ""
         var uploadTime = ""

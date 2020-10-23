@@ -10,12 +10,6 @@ import XCTest
 @testable import SwiftyNarou
 
 class ParseSectionContentsTest: XCTestCase {
-    var narou: Narou!
-    
-    override func setUp() {
-        narou = Narou()
-    }
-    
     func testParseMetadataSelectionAll() {
         let html = """
         <div class="contents1">
@@ -32,7 +26,7 @@ class ParseSectionContentsTest: XCTestCase {
         let expectedChapterTitle = "第１章　幼年期"
         
         let fragment = selectFragment(html)
-        let (novelTitle, writer, chapterTitle) = narou.parseMetadataSelection(selection: fragment)
+        let (novelTitle, writer, chapterTitle) = Narou.parseMetadataSelection(selection: fragment)
         XCTAssertEqual(novelTitle, expectedNovelTitle)
         XCTAssertEqual(writer, expectedWriter)
         XCTAssertEqual(chapterTitle, expectedChapterTitle)
@@ -53,7 +47,7 @@ class ParseSectionContentsTest: XCTestCase {
         let expectedWriter = "ＬＡ軍"
         
         let fragment = selectFragment(html)
-        let (novelTitle, writer, chapterTitle) = narou.parseMetadataSelection(selection: fragment)
+        let (novelTitle, writer, chapterTitle) = Narou.parseMetadataSelection(selection: fragment)
         XCTAssertEqual(novelTitle, expectedNovelTitle)
         XCTAssertEqual(writer, expectedWriter)
         XCTAssertNil(chapterTitle)
@@ -71,7 +65,7 @@ class ParseSectionContentsTest: XCTestCase {
         let expectedNext = "n5092gl/19"
         
         let fragment = selectFragment(html)
-        let (prev, next) = narou.parsePrevAndNextButtons(selection: fragment)
+        let (prev, next) = Narou.parsePrevAndNextButtons(selection: fragment)
         XCTAssertEqual(prev, expectedPrev)
         XCTAssertEqual(next, expectedNext)
     }
@@ -86,7 +80,7 @@ class ParseSectionContentsTest: XCTestCase {
         let expectedNext = "n5092gl/2"
         
         let fragment = selectFragment(html)
-        let (prev, next) = narou.parsePrevAndNextButtons(selection: fragment)
+        let (prev, next) = Narou.parsePrevAndNextButtons(selection: fragment)
         XCTAssertNil(prev)
         XCTAssertEqual(next, expectedNext)
     }
@@ -101,7 +95,7 @@ class ParseSectionContentsTest: XCTestCase {
         let expectedPrev = "n5092gl/1"
         
         let fragment = selectFragment(html)
-        let (prev, next) = narou.parsePrevAndNextButtons(selection: fragment)
+        let (prev, next) = Narou.parsePrevAndNextButtons(selection: fragment)
         XCTAssertEqual(prev, expectedPrev)
         XCTAssertNil(next)
     }
@@ -125,7 +119,7 @@ class ParseSectionContentsTest: XCTestCase {
         let expectedFormat = [NSRange: String]()
 
         let fragment = selectFragment(html)
-        let body = narou.parseSectionBody(selection: fragment)
+        let body = Narou.parseSectionBody(selection: fragment)
         XCTAssertEqual(body.content, expectedContent)
         XCTAssertEqual(body.format, expectedFormat)
     }
@@ -150,7 +144,7 @@ class ParseSectionContentsTest: XCTestCase {
         let expectedFormat = [NSRange: String]()
 
         let fragment = selectFragment(html)
-        let body = narou.parseSectionBody(selection: fragment)
+        let body = Narou.parseSectionBody(selection: fragment)
         XCTAssertEqual(body.content, expectedContent)
         XCTAssertEqual(body.format, expectedFormat)
     }
@@ -180,7 +174,7 @@ class ParseSectionContentsTest: XCTestCase {
         let expectedFormat = [NSRange: String]()
 
         let fragment = selectFragment(html)
-        let body = narou.parseSectionBody(selection: fragment)
+        let body = Narou.parseSectionBody(selection: fragment)
         XCTAssertEqual(body.content, expectedContent)
         XCTAssertEqual(body.format, expectedFormat)
     }
@@ -212,7 +206,7 @@ class ParseSectionContentsTest: XCTestCase {
         var expectedBases: Set<String> = ["音速", "光"]
 
         let fragment = selectFragment(html)
-        let body = narou.parseSectionBody(selection: fragment)
+        let body = Narou.parseSectionBody(selection: fragment)
 
         for format in body.format {
             let baseRange = Range<String.Index>(format.key, in: body.content)!
@@ -241,7 +235,7 @@ class ParseSectionContentsTest: XCTestCase {
         let expectedFurigana = "スピードオブサウンド"
         
         let fragment = selectFragment(html)
-        let (base, furigana) = narou.parseRuby(selection: fragment)
+        let (base, furigana) = Narou.parseRuby(selection: fragment)
         
         XCTAssertEqual(base, expectedBase)
         XCTAssertEqual(furigana, expectedFurigana)
@@ -322,7 +316,7 @@ class ParseSectionContentsTest: XCTestCase {
         let expectedProgress = "18/92"
         var expectedBases: Set<String> = ["音速", "光"]
     
-        let res = narou.filterSectionContentHtml(
+        let res = Narou.filterSectionContentHtml(
             html: try! (
                 try! SwiftSoup.parseBodyFragment(html)
             ).outerHtml()

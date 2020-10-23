@@ -108,7 +108,7 @@ class ParseJsonTest: XCTestCase {
             lastEdit: dateFormatter.date(from: "2020-10-20 20:08:05")
         )
         
-        let res = narou.parseJsonResponse(json)
+        let res = Narou.parseJsonResponse(json)
         XCTAssertEqual(res[0], expected)
     }
     
@@ -135,7 +135,7 @@ class ParseJsonTest: XCTestCase {
             author: "舞沢栄"
         )
         
-        let res = narou.parseJsonResponse(json)
+        let res = Narou.parseJsonResponse(json)
         XCTAssertEqual(res[0], expected)
     }
 }

@@ -10,12 +10,6 @@ import XCTest
 @testable import SwiftyNarou
 
 class SwiftyNarouTests: XCTestCase {
-    var narou: Narou!
-    
-    override func setUpWithError() throws {
-        narou = Narou()
-    }
-
     func testParseSeriesInfo() {
         let html = """
         <p class="series_title">
@@ -27,7 +21,7 @@ class SwiftyNarouTests: XCTestCase {
         let expectedNcode = "s5750d"
         
         let fragment = selectFragment(html)
-        let (title, ncode) = narou.parseSeriesInfo(selection: fragment)
+        let (title, ncode) = Narou.parseSeriesInfo(selection: fragment)
         XCTAssertEqual(title, expectedTitle)
         XCTAssertEqual(ncode, expectedNcode)
     }
@@ -37,7 +31,7 @@ class SwiftyNarouTests: XCTestCase {
         let expected = "無職転生　- 蛇足編 -"
         
         let fragment = selectFragment(html)
-        let title = narou.parseNovelTitle(selection: fragment)
+        let title = Narou.parseNovelTitle(selection: fragment)
         XCTAssertEqual(title, expected)
     }
     
@@ -73,7 +67,7 @@ class SwiftyNarouTests: XCTestCase {
         """
         
         let fragment = selectFragment(html)
-        let synopsis = narou.parseSynopsis(selection: fragment)
+        let synopsis = Narou.parseSynopsis(selection: fragment)
         XCTAssertEqual(synopsis, expected)
     }
 
@@ -96,7 +90,7 @@ class SwiftyNarouTests: XCTestCase {
         )
         
         let fragment = selectFragment(html)
-        let section = narou.parseSection(selection: fragment)
+        let section = Narou.parseSection(selection: fragment)
         XCTAssertEqual(section, expected)
     }
     
@@ -126,7 +120,7 @@ class SwiftyNarouTests: XCTestCase {
         )
         
         let fragment = selectFragment(html)
-        let section = narou.parseSection(selection: fragment)
+        let section = Narou.parseSection(selection: fragment)
         XCTAssertEqual(section, expected)
     }
     
@@ -187,7 +181,7 @@ class SwiftyNarouTests: XCTestCase {
         ]
         
         let fragment = selectFragment(html)
-        let chapters = narou.parseChapters(selection: fragment)
+        let chapters = Narou.parseChapters(selection: fragment)
         XCTAssertEqual(chapters, expected)
     }
     
@@ -233,7 +227,7 @@ class SwiftyNarouTests: XCTestCase {
         ]
         
         let fragment = selectFragment(html)
-        let chapters = narou.parseChapters(selection: fragment)
+        let chapters = Narou.parseChapters(selection: fragment)
         XCTAssertEqual(chapters, expected)
     }
 }

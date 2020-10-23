@@ -16,14 +16,14 @@ class GenerateQueryItemsTest: XCTestCase {
             ncode: ["n9669bk"]
         )
         var expectedUrl = formatUrl("ncode=n9669bk")
-        var url = narou.generateRequestUrl(from: request)
+        var url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
             ncode: ["n9669bk", "n1075ge"]
         )
         expectedUrl = formatUrl("ncode=n9669bk-n1075ge")
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
     }
 
@@ -32,14 +32,14 @@ class GenerateQueryItemsTest: XCTestCase {
             userId: ["288399"]
         )
         var expectedUrl = formatUrl("userid=288399")
-        var url = narou.generateRequestUrl(from: request)
+        var url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
             userId: ["288399", "1561197"]
         )
         expectedUrl = formatUrl("userid=288399-1561197")
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
     }
     
@@ -51,7 +51,7 @@ class GenerateQueryItemsTest: XCTestCase {
             inText: [.title, .synopsis]
         )
         let expectedUrl = formatUrl("word=僕たち&notword=彼女&title=1&ex=1")
-        let url = narou.generateRequestUrl(from: request)
+        let url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
     }
     
@@ -60,28 +60,28 @@ class GenerateQueryItemsTest: XCTestCase {
             bigGenre: [.romance, .scifi]
         )
         var expectedUrl = formatUrl("biggenre=1-4")
-        var url = narou.generateRequestUrl(from: request)
+        var url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
             notBigGenre: [.fantasy, .literature]
         )
         expectedUrl = formatUrl("notbiggenre=2-3")
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
             genre: [.fantasyHigh, .scifiVr]
         )
         expectedUrl = formatUrl("genre=201-401")
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
             notGenre: [.literatureMystery, .none]
         )
         expectedUrl = formatUrl("notgenre=304-9801")
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
     }
     
@@ -100,7 +100,7 @@ class GenerateQueryItemsTest: XCTestCase {
             "iszankoku=1&" +
             "istt=1"
         )
-        var url = narou.generateRequestUrl(from: request)
+        var url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
@@ -119,7 +119,7 @@ class GenerateQueryItemsTest: XCTestCase {
             "nottensei=1&" +
             "nottenni=1"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
     }
     
@@ -131,7 +131,7 @@ class GenerateQueryItemsTest: XCTestCase {
         var expectedUrl = formatUrl(
             "length=5000-15000"
         )
-        var url = narou.generateRequestUrl(from: request)
+        var url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         // test `kaiwaritu` and range min undefined
@@ -141,7 +141,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "kaiwaritu=-30"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         // test `sasie` and range max undefined
@@ -151,7 +151,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "sasie=6-"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
@@ -160,7 +160,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "time=1600000000-1603070228"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
@@ -169,7 +169,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "type=ter"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
@@ -183,7 +183,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "buntai=1-2-4-6"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
     }
     
@@ -194,7 +194,7 @@ class GenerateQueryItemsTest: XCTestCase {
         var expectedUrl = formatUrl(
             "stop=2"
         )
-        var url = narou.generateRequestUrl(from: request)
+        var url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
@@ -203,7 +203,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "lastUp=lastweek"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
@@ -212,7 +212,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "lastUp=1262271600-1264949999"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
@@ -221,7 +221,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "ispickup=1"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
     }
     
@@ -234,7 +234,7 @@ class GenerateQueryItemsTest: XCTestCase {
         var expectedUrl = formatUrl(
             "gzip=5"
         )
-        var url = narou.generateRequestUrl(from: request)
+        var url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         // test invalid gzipCompressionLevel doesn't get written into url
@@ -244,7 +244,7 @@ class GenerateQueryItemsTest: XCTestCase {
             )
         )
         expectedUrl = formatUrl("")
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
@@ -255,7 +255,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "out=yaml"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
@@ -266,7 +266,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "libtype=2"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
@@ -277,7 +277,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "of=n-w-gl"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
@@ -288,7 +288,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "lim=50"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
@@ -299,7 +299,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "start=10"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
         
         request = NarouRequest(
@@ -310,7 +310,7 @@ class GenerateQueryItemsTest: XCTestCase {
         expectedUrl = formatUrl(
             "order=new"
         )
-        url = narou.generateRequestUrl(from: request)
+        url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)
     }
 }

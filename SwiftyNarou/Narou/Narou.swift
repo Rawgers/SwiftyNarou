@@ -8,9 +8,9 @@
 import SwiftSoup
 
 public class Narou {
-    let session: URLSession = URLSession.shared
+    static let session: URLSession = URLSession.shared
     
-    func fetchNarou(
+    static func fetchNarou(
         url: URL,
         _ completionHandler: @escaping (Data?, Error?) -> Void
     ) {

@@ -8,12 +8,12 @@
 import SwiftSoup
 
 extension Narou {
-    public func fetchSectionContent(ncode: String, completionHandler: @escaping (SectionContent?, Error?) -> Void) {
+    public static func fetchSectionContent(ncode: String, completionHandler: @escaping (SectionContent?, Error?) -> Void) {
         let urlString = Constants.SYOSETU_NCODE_URL + ncode
         fetchSectionContent(urlString: urlString, completionHandler: completionHandler)
     }
     
-    public func fetchSectionContent(urlString: String, completionHandler: @escaping (SectionContent?, Error?) -> Void) {
+    public static func fetchSectionContent(urlString: String, completionHandler: @escaping (SectionContent?, Error?) -> Void) {
         guard let url = URL(string: urlString) else {
             completionHandler(nil, NarouError.MalformedUrl(malformedUrl: urlString))
             return
@@ -21,7 +21,7 @@ extension Narou {
         fetchSectionContent(url: url, completionHandler: completionHandler)
     }
     
-    public func fetchSectionContent(url: URL, completionHandler: @escaping (SectionContent?, Error?) -> Void) {
+    public static func fetchSectionContent(url: URL, completionHandler: @escaping (SectionContent?, Error?) -> Void) {
         let ncode = url.pathComponents[1]
         if ncode.first != "n" {
             completionHandler(nil, NarouError.IncorrectNcode(badNcode: ncode))
@@ -48,7 +48,7 @@ extension Narou {
         }
     }
 
-    func filterSectionContentHtml(html: String) -> SectionContent? {
+    static func filterSectionContentHtml(html: String) -> SectionContent? {
         do {
             let doc = try SwiftSoup.parse(html)
             let metadataSelection = (try doc.select(".contents1")).first()!
@@ -104,7 +104,7 @@ extension Narou {
         }
     }
     
-    func parseMetadataSelection(selection: Element) -> (
+    static func parseMetadataSelection(selection: Element) -> (
         novelTitle: String,
         writer: String,
         chapterTitle: String?
@@ -129,7 +129,7 @@ extension Narou {
         return (novelTitle, writer, chapterTitle)
     }
     
-    func parsePrevAndNextButtons(selection: Element) -> (
+    static func parsePrevAndNextButtons(selection: Element) -> (
         prevNcode: String?,
         nextNcode: String?
     ) {
@@ -148,7 +148,7 @@ extension Narou {
         return (prevNcode, nextNcode)
     }
     
-    func parseSectionBody(selection: Element) -> (
+    static func parseSectionBody(selection: Element) -> (
         content: String,
         format: [NSRange: String]
     ) {
@@ -202,7 +202,7 @@ extension Narou {
     }
     
     /// Deletes <rp> and <rt> elements. Returns a tuple of a base term and its furigana.
-    func parseRuby(selection: Element) -> (base: String, furigana: String) {
+    static func parseRuby(selection: Element) -> (base: String, furigana: String) {
         var base = ""
         var furigana = ""
         
@@ -223,7 +223,7 @@ extension Narou {
         return (base, furigana)
     }
     
-    private func getAppendRange(
+    private static func getAppendRange(
         content: inout String,
         charCount: inout Int,
         base: String

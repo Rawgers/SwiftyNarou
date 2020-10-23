@@ -9,16 +9,10 @@ import XCTest
 @testable import SwiftyNarou
 
 class FetchNovelIndexDataTest: XCTestCase {
-    var narou: Narou!
-    
-    override func setUp() {
-        narou = Narou()
-    }
-
     func testfetchNovelIndexData() {
         let expectation = self.expectation(description: "Fetching novel index.")
         let url = URL(string: "https://ncode.syosetu.com/n4251cr/")!
-        narou.fetchNarou(url: url) { data, error in
+        Narou.fetchNarou(url: url) { data, error in
             XCTAssertNil(error)
             XCTAssertNotNil(data)
             XCTAssertTrue(String(data: data!, encoding: .utf8)! != "")
