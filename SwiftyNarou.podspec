@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "SwiftyNarou"
-  spec.version      = "1.1.6"
+  spec.version      = "1.1.7"
   spec.summary      = 'A Swift wrapper for the Narou API. Also supports retrieving novel contents from ncode URLs.'
 
   spec.description  = <<-DESC
