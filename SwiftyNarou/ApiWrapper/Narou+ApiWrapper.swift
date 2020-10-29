@@ -402,9 +402,9 @@ extension Narou {
             ))
         }
         
-        if let start = format.start {
+        if let start = format.startIndex {
             queryItems.append(URLQueryItem(
-                name: "start",
+                name: "st",
                 value: String(start)
             ))
         }

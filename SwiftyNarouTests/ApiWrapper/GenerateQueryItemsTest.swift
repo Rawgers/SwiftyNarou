@@ -293,11 +293,11 @@ class GenerateQueryItemsTest: XCTestCase {
         
         request = NarouRequest(
             responseFormat: NarouResponseFormat(
-                start: 10
+                startIndex: 10
             )
         )
         expectedUrl = formatUrl(
-            "start=10"
+            "st=10"
         )
         url = Narou.generateRequestUrl(from: request)
         XCTAssertEqual(url.absoluteString, expectedUrl)

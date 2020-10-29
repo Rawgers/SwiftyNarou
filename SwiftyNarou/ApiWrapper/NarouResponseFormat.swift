@@ -96,8 +96,9 @@ public struct NarouResponseFormat {
     // number of rows to return [1, 500]
     public let limit: Int?
     
-    // out of `limit` rows, the starting row from which to return. [1, 2000]
-    public let start: Int?
+    // The starting row from which to return. [1, 2000]
+    // Limit is applied after.
+    public let startIndex: Int?
     
     // the order of the return
     public let order: ResponseOrder?
@@ -108,7 +109,7 @@ public struct NarouResponseFormat {
         yamlStyle: YamlStyle? = nil,
         fields: [ResponseFieldSelection]? = nil,
         limit: Int? = nil,
-        start: Int? = nil,
+        startIndex: Int? = nil,
         order: ResponseOrder? = nil
     ) {
         self.gzipCompressionLevel = gzipCompressionLevel != nil
@@ -120,7 +121,7 @@ public struct NarouResponseFormat {
         self.yamlStyle = yamlStyle
         self.fields = fields
         self.limit = limit
-        self.start = start
+        self.startIndex = startIndex
         self.order = order
     }
 }
