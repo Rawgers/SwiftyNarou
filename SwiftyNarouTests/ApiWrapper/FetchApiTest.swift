@@ -21,7 +21,8 @@ class FetchApiTest: XCTestCase {
         Narou.fetchNarouApi(request: request) { data, error in
             XCTAssertNil(error)
             XCTAssertNotNil(data)
-            XCTAssertEqual(data!.count, 50)
+            XCTAssertTrue(data!.0 >= 50)
+            XCTAssertEqual(data!.1.count, 50)
             expectation.fulfill()
         }
         waitForExpectations(timeout: 10, handler: nil)
@@ -39,7 +40,8 @@ class FetchApiTest: XCTestCase {
         Narou.fetchNarouApi(request: request) { data, error in
             XCTAssertNil(error)
             XCTAssertNotNil(data)
-            XCTAssertEqual(data!.count, 5)
+            XCTAssertTrue(data!.0 >= 5)
+            XCTAssertEqual(data!.1.count, 5)
             expectation.fulfill()
         }
         waitForExpectations(timeout: 10, handler: nil)

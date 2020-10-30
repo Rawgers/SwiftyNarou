@@ -8,13 +8,15 @@
 import SwiftyJSON
 
 extension Narou {
-    static func parseJsonResponse(_ response: Data) -> [NarouResponse] {
+    static func parseJsonResponse(_ response: Data) -> (Int, [NarouResponse]) {
         let json = try? JSON(data: response)
         let novels = json?.array ?? []
         
         var parsedResponses = [NarouResponse]()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let count = novels[0]["allcount"].int ?? 0
         for novel in novels[1...] {
             let genreValue = novel["biggenre"].int
             let subgenreValue = novel["genre"].int
@@ -111,6 +113,6 @@ extension Narou {
             parsedResponses.append(parsedResponse)
         }
 
-        return parsedResponses
+        return (count, parsedResponses)
     }
 }

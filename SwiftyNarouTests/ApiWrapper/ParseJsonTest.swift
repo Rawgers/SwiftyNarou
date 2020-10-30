@@ -109,7 +109,7 @@ class ParseJsonTest: XCTestCase {
         )
         
         let res = Narou.parseJsonResponse(json)
-        XCTAssertEqual(res[0], expected)
+        XCTAssertEqual(res.1[0], expected)
     }
     
     func testParseJsonResponseMissingFields() {
@@ -136,6 +136,6 @@ class ParseJsonTest: XCTestCase {
         )
         
         let res = Narou.parseJsonResponse(json)
-        XCTAssertEqual(res[0], expected)
+        XCTAssertEqual(res.1[0], expected)
     }
 }

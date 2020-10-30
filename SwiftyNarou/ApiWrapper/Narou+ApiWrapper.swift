@@ -8,7 +8,7 @@
 extension Narou {
     public static func fetchNarouApi(
         request: NarouRequest,
-        _ completion: @escaping ([NarouResponse]?, Error?) -> Void
+        _ completion: @escaping ((Int, [NarouResponse])?, Error?) -> Void
     ) {
         fetchNarouApiRaw(request: request) { data, error in
             if error != nil {
@@ -29,12 +29,12 @@ extension Narou {
                 data = gunzip(data)
             }
             
-            let response: [NarouResponse]
+            let response: (Int, [NarouResponse])?
             switch request.responseFormat?.fileFormat {
             case .JSON:
                 response = self.parseJsonResponse(data)
             default:
-                response = []
+                response = (0, [])
             }
             
             DispatchQueue.main.async {
