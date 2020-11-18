@@ -22,7 +22,7 @@ let request = NarouRequest(
   )
 )
 Narou.fetchNarouApi(request) { data, error in
-  if err != nil, let res: [NarouResponse] = data {
+  if err != nil, let count:Int, res: [NarouResponse] = data {
     // do something
   }
 }
