@@ -8,12 +8,18 @@
 import SwiftSoup
 
 extension Narou {
-    public static func fetchSectionContent(ncode: String, completionHandler: @escaping (SectionContent?, Error?) -> Void) {
+    public static func fetchSectionContent(
+        ncode: String,
+        completionHandler: @escaping (SectionContent?, Error?) -> Void
+    ) {
         let urlString = Constants.SYOSETU_NCODE_URL + ncode
         fetchSectionContent(urlString: urlString, completionHandler: completionHandler)
     }
     
-    public static func fetchSectionContent(urlString: String, completionHandler: @escaping (SectionContent?, Error?) -> Void) {
+    public static func fetchSectionContent(
+        urlString: String,
+        completionHandler: @escaping (SectionContent?, Error?) -> Void
+    ) {
         guard let url = URL(string: urlString) else {
             completionHandler(nil, NarouError.MalformedUrl(malformedUrl: urlString))
             return
@@ -21,10 +27,29 @@ extension Narou {
         fetchSectionContent(url: url, completionHandler: completionHandler)
     }
     
-    public static func fetchSectionContent(url: URL, completionHandler: @escaping (SectionContent?, Error?) -> Void) {
+    public static func fetchSectionContent(
+        url: URL,
+        completionHandler: @escaping (SectionContent?, Error?) -> Void
+    ) {
+        if url.pathComponents.endIndex != 3 {
+            completionHandler(
+                nil,
+                NarouError.InvalidNcode(
+                    badNcode: "\(url.pathComponents.joined())"
+                )
+            )
+            return
+        }
+        
         let ncode = url.pathComponents[1]
-        if ncode.first != "n" {
-            completionHandler(nil, NarouError.IncorrectNcode(badNcode: ncode))
+        let sectionId = url.pathComponents[2]
+        if (ncode.first != "n" && ncode.first != "N") || Int(sectionId) == nil {
+            completionHandler(
+                nil,
+                NarouError.InvalidNcode(
+                    badNcode: "\(ncode)/\(sectionId)"
+                )
+            )
             return
         }
         

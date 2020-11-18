@@ -8,12 +8,18 @@
 import SwiftSoup
 
 extension Narou {
-    public static func fetchNovelIndex(ncode: String, completionHandler: @escaping (NovelIndex?, Error?) -> Void) {
+    public static func fetchNovelIndex(
+        ncode: String,
+        completionHandler: @escaping (NovelIndex?, Error?) -> Void
+    ) {
         let urlString = Constants.SYOSETU_NCODE_URL + ncode
         fetchNovelIndex(urlString: urlString, completionHandler: completionHandler)
     }
     
-    public static func fetchNovelIndex(urlString: String, completionHandler: @escaping (NovelIndex?, Error?) -> Void) {
+    public static func fetchNovelIndex(
+        urlString: String,
+        completionHandler: @escaping (NovelIndex?, Error?) -> Void
+    ) {
         guard let url = URL(string: urlString) else {
             completionHandler(nil, NarouError.MalformedUrl(malformedUrl: urlString))
             return
@@ -21,10 +27,23 @@ extension Narou {
         fetchNovelIndex(url: url, completionHandler: completionHandler)
     }
     
-    public static func fetchNovelIndex(url: URL, completionHandler: @escaping (NovelIndex?, Error?) -> Void) {
+    public static func fetchNovelIndex(
+        url: URL,
+        completionHandler: @escaping (NovelIndex?, Error?) -> Void
+    ) {
+        if url.pathComponents.endIndex != 2 {
+            completionHandler(
+                nil,
+                NarouError.InvalidNcode(
+                    badNcode: "\(url.pathComponents.joined())"
+                )
+            )
+            return
+        }
+        
         let ncode = url.pathComponents[1]
-        if ncode.first != "n" {
-            completionHandler(nil, NarouError.IncorrectNcode(badNcode: ncode))
+        if ncode.first != "n" && ncode.first != "N" {
+            completionHandler(nil, NarouError.InvalidNcode(badNcode: ncode))
             return
         }
         
