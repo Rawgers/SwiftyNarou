@@ -13,7 +13,7 @@ public enum Genre: Int, CaseIterable {
     case other = 99
     case none = 98
     
-    var nameJP: String {
+    public var nameJp: String {
         switch self {
         case .romance: return "恋愛"
         case .fantasy: return "ファンタジー"
@@ -59,7 +59,7 @@ public enum Subgenre: Int, CaseIterable {
     case miscOther = 9999
     case none = 9801
     
-    var nameJP: String {
+    public var nameJp: String {
         switch self {
         case .romanceIsekai: return "異世界〔恋愛〕"
         case .romanceReality: return "現実世界〔恋愛〕"
