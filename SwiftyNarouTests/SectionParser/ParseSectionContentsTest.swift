@@ -241,7 +241,7 @@ class ParseSectionContentsTest: XCTestCase {
         XCTAssertEqual(furigana, expectedFurigana)
     }
     
-    func testFilterSectionContentHtml() {
+    func testFilterSectionDataHtml() {
         let html = """
         <div class="contents1">
             <a href="/n5092gl/" class="margin_r20"> ＳＳランクパーティでパシリをさせられていた男。ボス戦で仲間に見捨てられたので、ヤケクソで敏捷を９９９９まで極振りしたら『光』になった……</a>
@@ -316,7 +316,7 @@ class ParseSectionContentsTest: XCTestCase {
         let expectedProgress = "18/92"
         var expectedBases: Set<String> = ["音速", "光"]
     
-        let res = Narou.filterSectionContentHtml(
+        let res = Narou.filterSectionDataHtml(
             html: try! (
                 try! SwiftSoup.parseBodyFragment(html)
             ).outerHtml()

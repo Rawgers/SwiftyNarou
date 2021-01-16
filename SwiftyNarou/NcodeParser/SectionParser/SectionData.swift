@@ -1,11 +1,11 @@
 //
-//  SectionContents.swift
+//  SectionData.swift
 //  SwiftyNarou
 //
 //  Created by Roger Luo on 10/8/20.
 //
 
-public struct SectionContent {
+public struct SectionData {
     public let sectionTitle: String
     public let chapterTitle: String?
     public let novelTitle: String

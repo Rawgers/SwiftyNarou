@@ -8,28 +8,28 @@
 import SwiftSoup
 
 extension Narou {
-    public static func fetchSectionContent(
+    public static func fetchSectionData(
         ncode: String,
-        completionHandler: @escaping (SectionContent?, Error?) -> Void
+        completionHandler: @escaping (SectionData?, Error?) -> Void
     ) {
         let urlString = Constants.SYOSETU_NCODE_URL + ncode
-        fetchSectionContent(urlString: urlString, completionHandler: completionHandler)
+        fetchSectionData(urlString: urlString, completionHandler: completionHandler)
     }
     
-    public static func fetchSectionContent(
+    public static func fetchSectionData(
         urlString: String,
-        completionHandler: @escaping (SectionContent?, Error?) -> Void
+        completionHandler: @escaping (SectionData?, Error?) -> Void
     ) {
         guard let url = URL(string: urlString) else {
             completionHandler(nil, NarouError.MalformedUrl(malformedUrl: urlString))
             return
         }
-        fetchSectionContent(url: url, completionHandler: completionHandler)
+        fetchSectionData(url: url, completionHandler: completionHandler)
     }
     
-    public static func fetchSectionContent(
+    public static func fetchSectionData(
         url: URL,
-        completionHandler: @escaping (SectionContent?, Error?) -> Void
+        completionHandler: @escaping (SectionData?, Error?) -> Void
     ) {
         if url.pathComponents.endIndex != 3 {
             completionHandler(
@@ -53,7 +53,7 @@ extension Narou {
             return
         }
         
-        fetchNarou(url: url) { content, error in
+        fetchNarou(url: url) { data, error in
             if error != nil {
                 DispatchQueue.main.async {
                     completionHandler(nil, error)
@@ -61,19 +61,19 @@ extension Narou {
                 return
             }
             
-            let sectionContent = self.filterSectionContentHtml(
+            let sectionData = self.filterSectionDataHtml(
                 html: String(
-                    data: content!,
+                    data: data!,
                     encoding: .utf8
                 )!
             )
             DispatchQueue.main.async {
-                completionHandler(sectionContent, nil)
+                completionHandler(sectionData, nil)
             }
         }
     }
 
-    static func filterSectionContentHtml(html: String) -> SectionContent? {
+    static func filterSectionDataHtml(html: String) -> SectionData? {
         do {
             let doc = try SwiftSoup.parse(html)
             let metadataSelection = (try doc.select(".contents1")).first()!
@@ -113,7 +113,7 @@ extension Narou {
                 }
             }
             
-            return SectionContent(
+            return SectionData(
                 sectionTitle: sectionTitle,
                 chapterTitle: chapterTitle,
                 novelTitle: novelTitle,
