@@ -5,7 +5,7 @@
 //  Created by Roger Luo on 10/4/20.
 //
 
-public struct NovelIndex: Equatable {
+public struct NovelIndex: Equatable, Hashable {
     public let seriesTitle: String
     public let seriesNcode: String
     public let novelTitle: String
@@ -27,7 +27,7 @@ public struct NovelIndex: Equatable {
     }
 }
 
-public struct Chapter: Equatable {
+public struct Chapter: Equatable, Hashable {
     public let title: String
     public var sections: [Section]
     
@@ -40,7 +40,7 @@ public struct Chapter: Equatable {
     }
 }
 
-public struct Section: Equatable {
+public struct Section: Equatable, Hashable {
     public let title: String
     public let ncode: String
     public let uploadTime: String
